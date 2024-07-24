@@ -1,0 +1,73 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Tool Versions:</h2>
+IDE-Version: ¦ÌVision V5.40.0.0
+Copyright (C) 2024 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: Thomas Spock, none, LIC=----
+ 
+Tool Versions:
+Toolchain:       MDK-ARM Plus  Version: 5.40.0.3
+Toolchain Path:  C:\Keil5_MDK\ARM\ARMCLANG\Bin
+C Compiler:      ArmClang.exe V6.22
+Assembler:       Armasm.exe V6.22
+Linker/Locator:  ArmLink.exe V6.22
+Library Manager: ArmAr.exe V6.22
+Hex Converter:   FromElf.exe V6.22
+CPU DLL:         SARMCM3.DLL V5.40.0.3
+Dialog DLL:      DCM.DLL V1.17.5.0
+Target DLL:      STLink\ST-LINKIII-KEIL_SWO.dll V3.3.0.0
+Dialog DLL:      TCM.DLL V1.56.4.0
+ 
+<h2>Project:</h2>
+C:\Users\tgspo\Documents\GitHub\STM32_learing.github.io\4\1_1.uvprojx
+Project File Date:  07/24/2024
+
+<h2>Output:</h2>
+*** Using Compiler 'V6.22', folder: 'C:\Keil5_MDK\ARM\ARMCLANG\Bin'
+Build target 'Target 1'
+Start/core_cm3.c(445): error: non-ASM statement in naked function is not supported
+  445 |   uint32_t result=0;
+      |   ^
+Start/core_cm3.c(442): note: attribute is here
+  442 | uint32_t __get_PSP(void) __attribute__( ( naked ) );
+      |                                           ^
+Start/core_cm3.c(465): error: parameter references not allowed in naked functions
+  465 |                   "BX  lr     \n\t" : : "r" (topOfProcStack) );
+      |                                              ^
+Start/core_cm3.c(461): note: attribute is here
+  461 | void __set_PSP(uint32_t topOfProcStack) __attribute__( ( naked ) );
+      |                                                          ^
+Start/core_cm3.c(479): error: non-ASM statement in naked function is not supported
+  479 |   uint32_t result=0;
+      |   ^
+Start/core_cm3.c(476): note: attribute is here
+  476 | uint32_t __get_MSP(void) __attribute__( ( naked ) );
+      |                                           ^
+Start/core_cm3.c(499): error: parameter references not allowed in naked functions
+  499 |                   "BX  lr     \n\t" : : "r" (topOfMainStack) );
+      |                                              ^
+Start/core_cm3.c(495): note: attribute is here
+  495 | void __set_MSP(uint32_t topOfMainStack) __attribute__( ( naked ) );
+      |                                                          ^
+4 errors generated.
+compiling core_cm3.c...
+".\Objects\1_1.axf" - 4 Error(s), 0 Warning(s).
+
+<h2>Software Packages used:</h2>
+
+Package Vendor: Keil
+                https://www.keil.com/pack/Keil.STM32F1xx_DFP.2.4.1.pack
+                Keil::STM32F1xx_DFP@2.4.1
+                STMicroelectronics STM32F1 Series Device Support, Drivers and Examples
+
+<h2>Collection of Component include folders:</h2>
+  C:/Keil5_MDK/Keil/STM32F1xx_DFP/2.4.1/Device/Include
+
+<h2>Collection of Component Files used:</h2>
+Target not created.
+Build Time Elapsed:  00:00:01
+</pre>
+</body>
+</html>
