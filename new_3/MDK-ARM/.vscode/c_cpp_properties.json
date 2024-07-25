@@ -8,6 +8,10 @@
                 "c:\\Users\\tgspo\\Documents\\GitHub\\STM32_learing.github.io\\new_3\\Drivers\\STM32F4xx_HAL_Driver\\Inc\\Legacy",
                 "c:\\Users\\tgspo\\Documents\\GitHub\\STM32_learing.github.io\\new_3\\Drivers\\CMSIS\\Device\\ST\\STM32F4xx\\Include",
                 "c:\\Users\\tgspo\\Documents\\GitHub\\STM32_learing.github.io\\new_3\\Drivers\\CMSIS\\Include",
+                "C:\\Keil5_MDK\\ARM\\ARMCLANG\\include",
+                "C:\\Keil5_MDK\\ARM\\ARMCLANG\\include\\arm_linux",
+                "C:\\Keil5_MDK\\ARM\\ARMCLANG\\include\\arm_linux_compat",
+                "C:\\Keil5_MDK\\ARM\\ARMCLANG\\include\\libcxx",
                 "c:\\Users\\tgspo\\Documents\\GitHub\\STM32_learing.github.io\\new_3\\MDK-ARM",
                 "c:\\Users\\tgspo\\Documents\\GitHub\\STM32_learing.github.io\\new_3\\Core\\Src",
                 "c:\\Users\\tgspo\\Documents\\GitHub\\STM32_learing.github.io\\new_3\\Drivers\\STM32F4xx_HAL_Driver\\Src"
