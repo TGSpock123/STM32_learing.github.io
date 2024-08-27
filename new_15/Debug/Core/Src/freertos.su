@@ -1,6 +1,0 @@
-../Core/Src/freertos.c:87:13:PreSleepProcessing	16	static
-../Core/Src/freertos.c:92:13:PostSleepProcessing	16	static
-../Core/Src/freertos.c:103:6:MX_FREERTOS_Init	8	static
-../Core/Src/freertos.c:151:6:StartTask_0	24	static
-../Core/Src/freertos.c:171:6:StartTask_1	24	static
-../Core/Src/freertos.c:191:6:StartTask_2	24	static

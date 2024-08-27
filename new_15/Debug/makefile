@@ -64,8 +64,8 @@ all: main-build
 main-build: new_15.elf secondary-outputs
 
 # Tool invocations
-new_15.elf new_15.map: $(OBJS) $(USER_OBJS) /Users/tgspock/Documents/GitHub/STM32_learing.github.io/new_15/STM32F411CEUX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "new_15.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"/Users/tgspock/Documents/GitHub/STM32_learing.github.io/new_15/STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="new_15.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+new_15.elf new_15.map: $(OBJS) $(USER_OBJS) C:\Users\tgspo\Documents\GitHub\STM32_learing.github.io\new_15\STM32F411CEUX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "new_15.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\tgspo\Documents\GitHub\STM32_learing.github.io\new_15\STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="new_15.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
