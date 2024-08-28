@@ -45,6 +45,7 @@
 /* USER CODE BEGIN PM */
 
 /* USER CODE END PM */
+
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN Variables */
 uint8_t count = 0;
@@ -53,21 +54,21 @@ uint8_t count = 0;
 osThreadId_t task_lightHandle;
 const osThreadAttr_t task_light_attributes = {
   .name = "task_light",
-  .stack_size = 128 * 4,
+  .stack_size = 256 * 4,
   .priority = (osPriority_t) osPriorityNormal,
 };
 /* Definitions for task_read_butto */
-osThreadId_t task_read_buttoHandle;
-const osThreadAttr_t task_read_butto_attributes = {
-  .name = "task_read_butto",
-  .stack_size = 128 * 4,
+osThreadId_t task_read_buttonHandle;
+const osThreadAttr_t task_read_button_attributes = {
+  .name = "task_read_button",
+  .stack_size = 256 * 4,
   .priority = (osPriority_t) osPriorityAboveNormal,
 };
 /* Definitions for task_uart */
 osThreadId_t task_uartHandle;
 const osThreadAttr_t task_uart_attributes = {
   .name = "task_uart",
-  .stack_size = 128 * 4,
+  .stack_size = 256 * 4,
   .priority = (osPriority_t) osPriorityNormal,
 };
 /* Definitions for queue_button */
@@ -134,7 +135,7 @@ void MX_FREERTOS_Init(void) {
   task_lightHandle = osThreadNew(start_task_light, NULL, &task_light_attributes);
 
   /* creation of task_read_butto */
-  task_read_buttoHandle = osThreadNew(start_task_read_button, NULL, &task_read_butto_attributes);
+  task_read_buttonHandle = osThreadNew(start_task_read_button, NULL, &task_read_button_attributes);
 
   /* creation of task_uart */
   task_uartHandle = osThreadNew(start_task_uart, NULL, &task_uart_attributes);
@@ -168,17 +169,16 @@ void start_task_light(void *argument)
         HAL_GPIO_WritePin(GPIOA, LED_green_Pin | LED_red_Pin, GPIO_PIN_SET);
         break;
       case 1:
-        HAL_GPIO_TogglePin(GPIOA, LED_red_Pin);
+        HAL_GPIO_WritePin(GPIOA, LED_red_Pin, GPIO_PIN_RESET);
         break;
       case 2:
-        HAL_GPIO_TogglePin(GPIOA, LED_green_Pin | LED_red_Pin);
+        HAL_GPIO_WritePin(GPIOA, LED_green_Pin, GPIO_PIN_RESET);
+        HAL_GPIO_WritePin(GPIOA, LED_red_Pin, GPIO_PIN_SET);
         break;
       case 3:
-        HAL_GPIO_TogglePin(GPIOA, LED_red_Pin);
+        HAL_GPIO_WritePin(GPIOA, LED_red_Pin, GPIO_PIN_RESET);
         break;
     }
-
-    vTaskDelay(pdMS_TO_TICKS(200));
   }
   /* USER CODE END start_task_light */
 }
@@ -194,24 +194,31 @@ void start_task_read_button(void *argument)
 {
   /* USER CODE BEGIN start_task_read_button */
   uint8_t button_push_times = 0;
-  _Bool if_button_pushed;
+  BaseType_t if_error;
   /* Infinite loop */
   for(;;)
   {
-    if_button_pushed = HAL_GPIO_ReadPin(button_1_GPIO_Port, button_1_Pin);
-    if (if_button_pushed == GPIO_PIN_RESET)
+    if (HAL_GPIO_ReadPin(button_1_GPIO_Port, button_1_Pin) == GPIO_PIN_RESET)
     {
-        BaseType_t if_error = xQueueSendToBack(queue_buttonHandle, &button_push_times, pdMS_TO_TICKS(50));
-        button_push_times = (button_push_times + 1) % 4;
-        if (if_error == errQUEUE_FULL)
-        {
-            xQueueReset(queue_buttonHandle);
-        }
-        vTaskDelay(pdMS_TO_TICKS(200));
-    }else
-    {
-        vTaskDelay(pdMS_TO_TICKS(10));
+      osDelay(10);
+      continue;
     }
+
+    osDelay (20);
+    while ( HAL_GPIO_ReadPin(button_1_GPIO_Port, button_1_Pin) == GPIO_PIN_SET)
+    {
+      osDelay(10);
+    }
+
+    if_error = xQueueSendToBack(queue_buttonHandle, &button_push_times, pdMS_TO_TICKS(50));
+    button_push_times = (button_push_times + 1) % 4;
+
+    if (if_error == errQUEUE_FULL)
+    {
+       xQueueReset(queue_buttonHandle);
+     }
+
+     vTaskDelay(pdMS_TO_TICKS(200));
   }
   /* USER CODE END start_task_read_button */
 }
