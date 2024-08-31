@@ -19,7 +19,6 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "FreeRTOS.h"
-#include "main.h"
 #include "task.h"
 #include "main.h"
 #include "cmsis_os.h"
@@ -49,7 +48,7 @@
 
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN Variables */
-uint8_t if_push_long = 0, push_times = 0;
+uint8_t count = 0;
 /* USER CODE END Variables */
 /* Definitions for task_light */
 osThreadId_t task_lightHandle;
@@ -161,16 +160,24 @@ void MX_FREERTOS_Init(void) {
 void start_task_light(void *argument)
 {
   /* USER CODE BEGIN start_task_light */
-  uint8_t push_times_last = 0;
   /* Infinite loop */
   for(;;)
   {
-    if (push_times_last != push_times)
+    switch (count)
     {
-      (if_push_long) ?
-      ({HAL_GPIO_TogglePin(LED_green_GPIO_Port, LED_green_Pin);}) :
-      ({HAL_GPIO_TogglePin(LED_red_GPIO_Port, LED_red_Pin);});
-      push_times_last = push_times;
+      case 0:
+        HAL_GPIO_WritePin(GPIOA, LED_green_Pin | LED_red_Pin, GPIO_PIN_SET);
+        break;
+      case 1:
+        HAL_GPIO_WritePin(GPIOA, LED_red_Pin, GPIO_PIN_RESET);
+        break;
+      case 2:
+        HAL_GPIO_WritePin(GPIOA, LED_green_Pin, GPIO_PIN_RESET);
+        HAL_GPIO_WritePin(GPIOA, LED_red_Pin, GPIO_PIN_SET);
+        break;
+      case 3:
+        HAL_GPIO_WritePin(GPIOA, LED_red_Pin, GPIO_PIN_RESET);
+        break;
     }
   }
   /* USER CODE END start_task_light */
@@ -186,7 +193,7 @@ void start_task_light(void *argument)
 void start_task_read_button(void *argument)
 {
   /* USER CODE BEGIN start_task_read_button */
-  uint8_t button_push_time = 0, send = 0;
+  uint8_t button_push_times = 0;
   BaseType_t if_error;
   /* Infinite loop */
   for(;;)
@@ -198,20 +205,13 @@ void start_task_read_button(void *argument)
     }
 
     osDelay (20);
-    button_push_time = 0;
-    
     while ( HAL_GPIO_ReadPin(button_1_GPIO_Port, button_1_Pin) == GPIO_PIN_SET)
     {
-      if (button_push_time < 200)
-      {
-        button_push_time ++;
-      }
       osDelay(10);
     }
-    
-    (button_push_time < 50) ? (send = 0) : (send = 1);
-    
-    if_error = xQueueSendToBack(queue_buttonHandle, &send, pdMS_TO_TICKS(50));
+
+    if_error = xQueueSendToBack(queue_buttonHandle, &button_push_times, pdMS_TO_TICKS(50));
+    button_push_times = (button_push_times + 1) % 4;
 
     if (if_error == errQUEUE_FULL)
     {
@@ -233,26 +233,19 @@ void start_task_read_button(void *argument)
 void start_task_uart(void *argument)
 {
   /* USER CODE BEGIN start_task_uart */
-  char send[200], long_input[] = "long input\0", short_input[] = "short input\0";
+  char send[200];
   uint8_t num = 0;
 
-  sprintf(send, "queue name is %s, queue size is %u. \n",
-          (char *) pcQueueGetName(queue_buttonHandle),
-          (unsigned int) uxQueueSpacesAvailable(queue_buttonHandle));
+  sprintf(send, "queue name is %s, queue size is %u. \n", (char *) pcQueueGetName(queue_buttonHandle), (unsigned int) uxQueueSpacesAvailable(queue_buttonHandle));
   HAL_UART_Transmit_IT(&huart2, (uint8_t *) send, strlen (send));
   /* Infinite loop */
   for(;;)
   {
       if (xQueueReceive(queue_buttonHandle, &num, pdMS_TO_TICKS(50)) == pdTRUE)
       {
-          sprintf(send, "queue name: %s, queue size: %u, it's a %s. \n",
-        (char *) pcQueueGetName(queue_buttonHandle),
-        (unsigned int)uxQueueSpacesAvailable(queue_buttonHandle),
-        (!num) ? (short_input) : (long_input));
-          
+          sprintf(send, "queue name: %s, queue size: %u, received value: %u. \n", (char *) pcQueueGetName(queue_buttonHandle), (unsigned int)uxQueueSpacesAvailable(queue_buttonHandle), num);
           HAL_UART_Transmit_IT(&huart2, (uint8_t *) send, strlen(send));
-          if_push_long = num;
-          push_times ++;
+          count = num;
       }
 
       vTaskDelay(pdMS_TO_TICKS(200));
