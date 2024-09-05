@@ -42,7 +42,9 @@
 
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN Variables */
-
+push_opt_stu situation = IDLE;
+btn_stu extern if_btn_opr;
+uint32_t gap = 0;
 /* USER CODE END Variables */
 /* Definitions for t_output */
 osThreadId_t t_outputHandle;
@@ -150,12 +152,11 @@ void MX_FREERTOS_Init(void) {
 void entry_t_light_buzzer(void *argument)
 {
   /* USER CODE BEGIN entry_t_light_buzzer */
-  char send[] = "buzzer";
+
   /* Infinite loop */
   for(;;)
   {
-    HAL_UART_Transmit_IT(&huart2, (uint8_t *) send, strlen (send));
-    vTaskDelay(pdMS_TO_TICKS(300));
+    osDelay(1);
   }
   /* USER CODE END entry_t_light_buzzer */
 }
@@ -170,12 +171,62 @@ void entry_t_light_buzzer(void *argument)
 void entry_t_read_btn(void *argument)
 {
   /* USER CODE BEGIN entry_t_read_btn */
-  char send[] = "btn";
+  uint8_t send_uart = 0;
+  char send[30];
   /* Infinite loop */
   for(;;)
   {
-    HAL_UART_Transmit_IT(&huart2, (uint8_t *) send, strlen (send));
-    vTaskDelay(pdMS_TO_TICKS(1000));
+    switch (situation)
+    {
+      case IDLE:
+      switch (if_btn_opr)
+      {
+        case PUSH:
+        gap = HAL_GetTick();
+        break;
+        case RELEASE:
+        gap = HAL_GetTick() - gap;
+        situation = PUSH_SHORT;
+        break;
+        case NO_OPR:
+        break;
+      } 
+      break;
+      case PUSH_SHORT:
+      if (gap > pdMS_TO_TICKS(500))
+      {
+        situation = PUSH_LONG;
+        break;
+      }else
+      {
+        all_init ();
+        vTaskDelay (pdMS_TO_TICKS(200));
+        if (if_btn_opr != NO_OPR)
+        {
+          situation = PUSH_DOUBLE;
+          break;
+        }
+      }
+      
+      sprintf (send, "short %lu", gap);
+      HAL_UART_Transmit_IT(&huart2, (uint8_t *) send, strlen (send));
+      all_init ();
+      break;
+      case PUSH_LONG:
+      sprintf (send, "long %lu", gap);
+      HAL_UART_Transmit_IT(&huart2, (uint8_t *) send, strlen (send));
+      all_init ();
+      break;
+      case PUSH_DOUBLE:
+      sprintf (send, "double %lu", gap);
+      HAL_UART_Transmit_IT(&huart2, (uint8_t *) send, strlen (send));
+      all_init ();
+      break;
+      default:
+      situation = IDLE;
+      break;
+    }
+    vTaskDelay (100);
   }
   /* USER CODE END entry_t_read_btn */
 }
@@ -190,12 +241,14 @@ void entry_t_read_btn(void *argument)
 void entry_t_uart(void *argument)
 {
   /* USER CODE BEGIN entry_t_uart */
-  char send[] = "Hello world. ";
+  uint8_t recv_btn = 0, send_opt = 0;
+  char send_srn[200] = "\0", s_ipt = "short input. ",
+  l_input = "long input. ", d_input = "double input. ";
+  HAL_UART_Transmit_IT(&huart2, (uint8_t *) send_srn, strlen (send_srn));
   /* Infinite loop */
   for(;;)
   {
-    HAL_UART_Transmit_IT(&huart2, (uint8_t *) send, strlen (send));
-    vTaskDelay(pdMS_TO_TICKS(500));
+    osDelay(1);
   }
   /* USER CODE END entry_t_uart */
 }

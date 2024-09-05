@@ -64,8 +64,8 @@ all: main-build
 main-build: new_eighteen.elf secondary-outputs
 
 # Tool invocations
-new_eighteen.elf new_eighteen.map: $(OBJS) $(USER_OBJS) C:\Github\STM32_learing.github.io\new_eighteen\STM32F407ZGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "new_eighteen.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Github\STM32_learing.github.io\new_eighteen\STM32F407ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="new_eighteen.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+new_eighteen.elf new_eighteen.map: $(OBJS) $(USER_OBJS) /Users/tgspock/Documents/GitHub/STM32_learing.github.io/new_eighteen/STM32F407ZGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "new_eighteen.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"/Users/tgspock/Documents/GitHub/STM32_learing.github.io/new_eighteen/STM32F407ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="new_eighteen.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
