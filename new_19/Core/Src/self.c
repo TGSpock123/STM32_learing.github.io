@@ -58,8 +58,9 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 
 _Bool if_double_click (void)
 {
-  uint32_t first_push_end = HAL_GetTick(), second_push_begin = 0;
+  uint32_t push_end = HAL_GetTick(), second_push_begin = 0;
   uint8_t buffer;
+  _Bool push_or_release = 0;
   
   while (second_push_begin < pdMS_TO_TICKS(200))
   {
@@ -67,11 +68,23 @@ _Bool if_double_click (void)
     {
       if (!buffer)
       {
-        return 1;
+        push_or_release = 1;
+        second_push_begin = HAL_GetTick();
+        break;
       }
     }
     
-    second_push_begin = xTaskGetTickCount () - first_push_end;
+    second_push_begin = xTaskGetTickCount () - push_end;
+  }
+  
+  if (push_or_release)
+  {
+    while (xQueueReceive(EXTI_to_buttonHandle, &buffer, pdMS_TO_TICKS(100)) == pdFALSE);
+    if (buffer)
+    {
+      push_end = HAL_GetTick() - second_push_begin;
+      return (push_end > 20) ? (1) : (0);
+    }
   }
   
   return 0;

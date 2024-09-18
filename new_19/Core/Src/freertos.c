@@ -218,7 +218,7 @@ void start_read_button(void *argument)
   uint32_t gap;
   uint8_t buffer;
   enum_button situations = IDLE_BUTTON;
-  _Bool if_ignore_next_release = 0;
+  //_Bool if_ignore_next_release = 0;
   /* Infinite loop */
   for(;;)
   {
@@ -232,11 +232,11 @@ void start_read_button(void *argument)
             gap = HAL_GetTick();
           }else
           {
-            if (if_ignore_next_release)
+            /*if (if_ignore_next_release)
             {
               if_ignore_next_release = 0;
               break;
-            }
+            }*/
             gap = HAL_GetTick() - gap;
             if (gap > 20)
             {
@@ -249,7 +249,7 @@ void start_read_button(void *argument)
         if(if_double_click())
         {
           situations = BUTTON_DOUBLE;
-          if_ignore_next_release = 1;
+          //if_ignore_next_release = 1;
           break;
         }
         xQueueSend(button_to_uartHandle, &situations, pdMS_TO_TICKS(100));
