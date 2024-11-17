@@ -1,0 +1,4 @@
+../Core/Src/freertos.c:100:6:MX_FREERTOS_Init	8	static
+../Core/Src/freertos.c:158:6:start_t_read	32	static
+../Core/Src/freertos.c:204:6:start_t_uart	72	static
+../Core/Src/freertos.c:230:6:start_t_operate	24	static

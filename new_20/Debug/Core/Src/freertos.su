@@ -1,4 +1,0 @@
-../Core/Src/freertos.c:90:6:MX_FREERTOS_Init	8	static
-../Core/Src/freertos.c:142:6:start_read_uart	16	static
-../Core/Src/freertos.c:160:6:start_output	16	static
-../Core/Src/freertos.c:182:6:start_count_time	24	static
