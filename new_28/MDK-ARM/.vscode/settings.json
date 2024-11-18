@@ -1,0 +1,6 @@
+{
+  "files.associations": {
+    "self.h": "c",
+    "semphr.h": "c"
+  }
+}
