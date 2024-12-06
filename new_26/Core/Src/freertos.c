@@ -182,6 +182,7 @@ void start_task_uart(void *argument)
   for(;;)
   {
     HAL_UART_Receive_DMA(&huart2, (uint8_t *)rx_buffer, 20);
+    //format eample: #2024_11_24 09:56:33;
     vTaskDelay(20);
   }
   /* USER CODE END start_task_uart */
