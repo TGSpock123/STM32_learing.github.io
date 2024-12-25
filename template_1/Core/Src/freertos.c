@@ -175,34 +175,12 @@ void start_t_input(void *argument)
 void start_t_log(void *argument)
 {
   /* USER CODE BEGIN start_t_log */
-  SEGGER_RTT_Init();
-  elog_init();
 
-  elog_set_fmt(ELOG_LVL_ASSERT, ELOG_FMT_ALL & ~ELOG_FMT_P_INFO);
-  elog_set_fmt(ELOG_LVL_ERROR, ELOG_FMT_LVL | ELOG_FMT_TAG | ELOG_FMT_TIME);
-  elog_set_fmt(ELOG_LVL_WARN, ELOG_FMT_LVL | ELOG_FMT_TAG | ELOG_FMT_TIME);
-  elog_set_fmt(ELOG_LVL_INFO, ELOG_FMT_LVL | ELOG_FMT_TAG | ELOG_FMT_TIME);
-  elog_set_fmt(ELOG_LVL_DEBUG, ELOG_FMT_ALL & ~(ELOG_FMT_FUNC | ELOG_FMT_P_INFO));
-  elog_set_fmt(ELOG_LVL_VERBOSE, ELOG_FMT_ALL & ~(ELOG_FMT_FUNC | ELOG_FMT_P_INFO));
-
-  elog_start();
-  
-  SEGGER_RTT_printf(0, "Secquence Start. \n");
+  test_unity();
   /* Infinite loop */
   for(;;)
   {
-    log_a("Hello Elog. \n");
-    vTaskDelay(200);
-    log_d("Hello Elog. \n");
-    vTaskDelay(200);
-    log_e("Hello Elog. \n");
-    vTaskDelay(200);
-    log_i("Hello Elog. \n");
-    vTaskDelay(200);
-    log_v("Hello Elog. \n");
-    vTaskDelay(200);
-    log_w("Hello Elog. \n");
-    vTaskDelay(200);
+    test_elogger();
   }
   /* USER CODE END start_t_log */
 }

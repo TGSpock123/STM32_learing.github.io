@@ -1,0 +1,7 @@
+{
+  "files.associations": {
+    "self.h": "c",
+    "main.h": "c",
+    "usart.h": "c"
+  }
+}

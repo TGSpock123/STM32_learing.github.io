@@ -9,5 +9,6 @@
 #include "rtc.h"
 #include "SEGGER_RTT.h"
 #include "elog.h"
+#include "aes.h"
 
 #endif

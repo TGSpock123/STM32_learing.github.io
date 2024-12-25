@@ -18,10 +18,6 @@
 /* USER CODE END Header */
 
 /* Includes ------------------------------------------------------------------*/
-#include "FreeRTOS.h"
-#include "task.h"
-#include "main.h"
-#include "cmsis_os.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -45,7 +41,7 @@
 
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN Variables */
-
+static char * string = "Eternal-Chip";
 /* USER CODE END Variables */
 /* Definitions for t_input */
 osThreadId_t t_inputHandle;
@@ -187,6 +183,13 @@ void start_t_input(void *argument)
 void start_t_log(void *argument)
 {
   /* USER CODE BEGIN start_t_log */
+  uint8_t buffer[16] = "11aa22bb33cc44dd", save_buffer[16], descrypt_buffer[16];
+  unsigned char aes_128_key[16] = "123456789abcdefa";
+  unsigned char aes_IV[16] = "0102030405123456";
+  
+  strcpy((char *)buffer, string);
+  buffer[strlen(string)] = '\0';
+  
   SEGGER_RTT_Init();
   elog_init();
 
@@ -200,21 +203,33 @@ void start_t_log(void *argument)
   elog_start();
   
   SEGGER_RTT_printf(0, "Secquence Start. \n");
+  
+  aes_init(aes_128_key);
+  
+  aes_encrypt(buffer, save_buffer, sizeof(buffer), aes_IV);
+  
+  log_i("Buffer data: %s\n", buffer);
+  log_i("Buffer hex: %x\n", buffer);
+  log_i("After AES hex: %x\n", save_buffer);
+  aes_decrypt(save_buffer, descrypt_buffer, sizeof(buffer), aes_IV);
+  log_i("After descrypt hex: %x\n", descrypt_buffer);
+  log_i("After descrypt data: %s\n", descrypt_buffer);
+  
   /* Infinite loop */
   for(;;)
   {
-    log_a("Hello Elog. \n");
-    vTaskDelay(200);
-    log_d("Hello Elog. \n");
-    vTaskDelay(200);
-    log_e("Hello Elog. \n");
-    vTaskDelay(200);
-    log_i("Hello Elog. \n");
-    vTaskDelay(200);
-    log_v("Hello Elog. \n");
-    vTaskDelay(200);
-    log_w("Hello Elog. \n");
-    vTaskDelay(200);
+//    log_a("Hello Elog. \n");
+//    vTaskDelay(200);
+//    log_d("Hello Elog. \n");
+//    vTaskDelay(200);
+//    log_e("Hello Elog. \n");
+//    vTaskDelay(200);
+//    log_i("Hello Elog. \n");
+//    vTaskDelay(200);
+//    log_v("Hello Elog. \n");
+//    vTaskDelay(200);
+//    log_w("Hello Elog. \n");
+    vTaskDelay(200); 
   }
   /* USER CODE END start_t_log */
 }

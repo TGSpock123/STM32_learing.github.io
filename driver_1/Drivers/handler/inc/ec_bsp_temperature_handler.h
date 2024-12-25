@@ -1,0 +1,4 @@
+#ifndef __EC_BSP_TEMPERATURE_HANDLER_H
+#define __EC_BSP_TEMPERATURE_HANDLER_H
+
+#endif

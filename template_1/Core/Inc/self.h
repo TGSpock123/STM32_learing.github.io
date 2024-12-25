@@ -7,7 +7,9 @@
 #include "cmsis_os.h"
 #include "queue.h"
 #include "rtc.h"
-#include "SEGGER_RTT.h"
-#include "elog.h"
+
+void test_elogger(void);
+void fault_test(void);
+void test_unity(void);
 
 #endif
