@@ -100,7 +100,7 @@ void Delay(__IO uint32_t nTime)
 void TimingDelay_Decrement(void)
 {
   if (uwTimingDelay != 0x00)
-  { 
+  {
     uwTimingDelay--;
   }
 }

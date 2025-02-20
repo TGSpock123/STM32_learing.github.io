@@ -1,0 +1,9 @@
+template_1\elog.o: ..\Middlewares\Third_Party\easylogger\src\elog.c
+template_1\elog.o: ../Middlewares/Third_Party/easylogger/inc/elog.h
+template_1\elog.o: ../Middlewares/Third_Party/easylogger/inc/elog_cfg.h
+template_1\elog.o: C:\Users\tgspo\AppData\Local\Keil_v5\ARM\ARM_Compiler_5.06u7\Bin\..\include\stdint.h
+template_1\elog.o: C:\Users\tgspo\AppData\Local\Keil_v5\ARM\ARM_Compiler_5.06u7\Bin\..\include\stddef.h
+template_1\elog.o: C:\Users\tgspo\AppData\Local\Keil_v5\ARM\ARM_Compiler_5.06u7\Bin\..\include\stdbool.h
+template_1\elog.o: C:\Users\tgspo\AppData\Local\Keil_v5\ARM\ARM_Compiler_5.06u7\Bin\..\include\string.h
+template_1\elog.o: C:\Users\tgspo\AppData\Local\Keil_v5\ARM\ARM_Compiler_5.06u7\Bin\..\include\stdarg.h
+template_1\elog.o: C:\Users\tgspo\AppData\Local\Keil_v5\ARM\ARM_Compiler_5.06u7\Bin\..\include\stdio.h

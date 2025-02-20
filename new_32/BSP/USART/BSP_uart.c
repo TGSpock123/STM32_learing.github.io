@@ -1,6 +1,5 @@
 #include "BSP_uart.h"
 #include "usart.h"
-#include "circular_buffer.h"
 
 //#define USE_BUFFER_A 0
 //#define USE_BUFFER_B 1
@@ -12,7 +11,7 @@
 
 uint8_t g_data_buffer = 0;
 extern QueueHandle_t mail_front_to_back;
-static circular_buffer_t * g_circular_buffer_irq_thread = NULL;
+static circular_buffer_t * circular_buffer_irq_thread = NULL;
 static QueueHandle_t mail_irq_to_thread = NULL;
 
 //irq here:
@@ -71,18 +70,21 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 //irq
 #if 1
 //1. put data into circular buffer:
-  if(!g_circular_buffer_irq_thread)
+  if(!circular_buffer_irq_thread)
   {
     log_e("error of g_circular_buffer_irq_thread");
     return;
   }
   
-  uint8_t insert_ret = 0;
-  insert_ret = insert_data(g_circular_buffer_irq_thread, g_data_buffer);
+//  uint8_t insert_ret = 0;
+//  insert_ret = 
+  insert_data(circular_buffer_irq_thread, g_data_buffer);
 //2. tell front the data is ready(using a mailbox):
   uint32_t send_to_thread = IRQ_TO_THREAD;
   BaseType_t ret_val = pdPASS;
-  ret_val = xQueueSendFromISR(mail_irq_to_thread, &send_to_thread, NULL);
+  ret_val = xQueueGenericSendFromISR(
+  mail_irq_to_thread, &send_to_thread, NULL, queueOVERWRITE
+  );
   if(ret_val != pdPASS)
   {
     log_e("error sending to front. \r\n");
@@ -90,9 +92,9 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
   }
 //  log_i("send succeed. \r\n");
 //3. open next time receive:
-  HAL_StatusTypeDef recive_irq_ret = HAL_OK;
-  recive_irq_ret = HAL_UART_Receive_IT(&huart1, &g_data_buffer, 1);
-  
+//  HAL_StatusTypeDef recive_irq_ret = HAL_OK;
+//  recive_irq_ret = 
+  HAL_UART_Receive_IT(&huart1, &g_data_buffer, 1);
 #endif
   portYIELD_FROM_ISR(if_higher_task_ask);
 }
@@ -109,7 +111,7 @@ void t_bsp_uart_driver(void *argument)
     log_e("error creating buffer. \r\n");
   }
   log_i("buffer created. \r\n");
-  g_circular_buffer_irq_thread = pt_circular_buffer;
+  circular_buffer_irq_thread = pt_circular_buffer;
 
 //  if(BUFFER_IS_EMPTY == if_buffer_empty(pt_circular_buffer))
 //  {
@@ -134,7 +136,7 @@ void t_bsp_uart_driver(void *argument)
 //  }
 
 //1. init the mailbox:
-  mail_irq_to_thread = xQueueCreate(BUFFER_SIZE, 4);
+  mail_irq_to_thread = xQueueCreate(1, 4);
   if(!mail_irq_to_thread)
   {
     log_e("error creating mail_irq_to_thread. \r\n");
@@ -143,10 +145,10 @@ void t_bsp_uart_driver(void *argument)
 
 //  use_witch_buffer = USE_BUFFER_A;
   
-  HAL_StatusTypeDef ret = HAL_OK;
-  ret = HAL_UART_Receive_IT(&huart1, &g_data_buffer, 1);
+  HAL_StatusTypeDef uart_receive_ret = HAL_OK;
+  uart_receive_ret = HAL_UART_Receive_IT(&huart1, &g_data_buffer, 1);
   
-  if(HAL_OK == ret)
+  if(HAL_OK == uart_receive_ret)
   {
     log_i("HAL uart init succeed. \r\n");
   }else
@@ -161,15 +163,18 @@ void t_bsp_uart_driver(void *argument)
     if(receive_from_irq == IRQ_TO_THREAD)
     {
 //2. send notifi to back:
-      uint32_t send_to_back = IRQ_TO_THREAD;
-      BaseType_t ret_val = pdPASS;
-      ret_val = xQueueSendFromISR(mail_front_to_back, &send_to_back, NULL);
-      if(ret_val != pdPASS)
+      uint32_t send_to_back = FRONT_TO_BACK;
+      BaseType_t send_to_back_ret = pdPASS;
+      send_to_back_ret = xQueueGenericSend(
+      mail_front_to_back, &send_to_back, NULL, queueOVERWRITE	
+      );
+      if(send_to_back_ret != pdPASS)
       {
         log_e("error sending to back. \r\n");
         return;
       }
-      log_i("send to back succeed. \r\n");
+//      log_i("send to back succeed. \r\n");
+      
 //      uint8_t temp = 0;
 //      if(BUFFER_GET_SUCCESS == get_data(g_circular_buffer_irq_thread, &temp))
 //      {
@@ -177,4 +182,14 @@ void t_bsp_uart_driver(void *argument)
 //      }
     }
   }
+}
+
+circular_buffer_t * transmit_pt_circular_buffer(void)
+{
+  if(NULL == circular_buffer_irq_thread)
+  {
+    log_e("error circular buffer pointer. \r\n");
+  }
+  
+  return circular_buffer_irq_thread;
 }

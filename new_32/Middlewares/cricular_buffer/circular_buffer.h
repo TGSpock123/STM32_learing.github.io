@@ -6,6 +6,11 @@
 #define BUFFER_SIZE 100
 #define BUFFER_ERROR 0xFF
 
+#define FRAME_HEAD 0x00
+#define FRAME_TAIL 0x01
+#define FRAME_HEAD_FLAG 0xFE
+#define FRAME_TAIL_FLAG 0xFF
+
 typedef uint8_t data_type_t;
 typedef struct 
 {

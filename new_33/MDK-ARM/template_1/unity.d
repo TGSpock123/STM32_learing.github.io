@@ -1,0 +1,14 @@
+template_1\unity.o: ..\Middlewares\Third_Party\Unity\unity.c
+template_1\unity.o: ..\Middlewares\Third_Party\Unity\unity.h
+template_1\unity.o: ..\Middlewares\Third_Party\Unity\unity_internals.h
+template_1\unity.o: ..\Middlewares\Third_Party\Unity\unity_config.h
+template_1\unity.o: C:\Users\tgspo\AppData\Local\Keil_v5\ARM\ARM_Compiler_5.06u7\Bin\..\include\stdio.h
+template_1\unity.o: ../Middlewares/Third_Party/RTT/Inc/SEGGER_RTT.h
+template_1\unity.o: ../Middlewares/Third_Party/RTT/Inc/SEGGER_RTT_Conf.h
+template_1\unity.o: C:\Users\tgspo\AppData\Local\Keil_v5\ARM\ARM_Compiler_5.06u7\Bin\..\include\stdlib.h
+template_1\unity.o: C:\Users\tgspo\AppData\Local\Keil_v5\ARM\ARM_Compiler_5.06u7\Bin\..\include\stdarg.h
+template_1\unity.o: C:\Users\tgspo\AppData\Local\Keil_v5\ARM\ARM_Compiler_5.06u7\Bin\..\include\stdint.h
+template_1\unity.o: C:\Users\tgspo\AppData\Local\Keil_v5\ARM\ARM_Compiler_5.06u7\Bin\..\include\setjmp.h
+template_1\unity.o: C:\Users\tgspo\AppData\Local\Keil_v5\ARM\ARM_Compiler_5.06u7\Bin\..\include\math.h
+template_1\unity.o: C:\Users\tgspo\AppData\Local\Keil_v5\ARM\ARM_Compiler_5.06u7\Bin\..\include\stddef.h
+template_1\unity.o: C:\Users\tgspo\AppData\Local\Keil_v5\ARM\ARM_Compiler_5.06u7\Bin\..\include\limits.h
