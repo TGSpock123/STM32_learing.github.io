@@ -16,28 +16,35 @@
 
 typedef enum
 {
-  PROPOR_1_1 = 0, PROPOR_1_2, PROPOR_1_3, PROPOR_2_1,
+  PROPOR_1_1 = 0,
+  PROPOR_1_2, PROPOR_1_3, PROPOR_2_1,
   PROPOR_3_1, PROPOR_0_1, PROPOR_1_0,
   PROPOR_RESERVED = 0xFF
 }proportion__t;
 
 typedef enum
 {
-  LED_OK = 0, LED_ERROR, LED_ERROR_TIMEOUT, LED_ERROR_SOURCE,
+  LED_OK = 0,
+  LED_ERROR, LED_ERROR_TIMEOUT, LED_ERROR_SOURCE,
   LED_ERROR_PARAMETER, LED_ERROR_NOMEMORY, LED_ERROR_ISR,
   LED_RESERVED = 0xFF
 }led_status_t;
 
 typedef struct
 {
-     led_status_t (* pf_led_on)(void);
-     led_status_t (* pf_led_off)(void);
+  led_status_t (* pf_led_on)(void);
+  led_status_t (* pf_led_off)(void);
 }led_operations_t;
 
 typedef struct
 {
-    led_status_t (* pf_get_time_ms)(void);
+  led_status_t (* pf_get_time_ms)(uint32_t * const);
 }time_base_ms_t;
+
+typedef struct
+{
+  led_status_t (* pf_os_delay_ms)(const uint32_t);
+}os_delay_t;
 
 typedef struct
 {
@@ -52,7 +59,12 @@ typedef struct
     //IOs need:
     led_operations_t * p_led_operation_inst;
     time_base_ms_t * p_time_base_ms;
+
+    //from OS layer:
+    os_delay_t * p_os_time_delay;
+
     //APIs:
+
 
 }bsp_led_driver_t;
 

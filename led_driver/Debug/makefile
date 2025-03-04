@@ -1,5 +1,5 @@
 ################################################################################
-# 自动生成的文件。不要编辑！
+# Automatically-generated file. Do not edit!
 # Toolchain: GNU Tools for STM32 (12.3.rel1)
 ################################################################################
 
@@ -61,29 +61,29 @@ OBJDUMP_LIST += \
 template_stm32h7.list \
 
 
-# 所有目标
+# All Target
 all: main-build
 
-# 主构建目标
+# Main-build Target
 main-build: template_stm32h7.elf secondary-outputs
 
-# 工具调用
-template_stm32h7.elf template_stm32h7.map: $(OBJS) $(USER_OBJS) C:\Github\STM32_learing.github.io\led_driver\STM32H743VITX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "template_stm32h7.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m7 -T"C:\Github\STM32_learing.github.io\led_driver\STM32H743VITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="template_stm32h7.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-	@echo '已结束构建目标： $@'
+# Tool invocations
+template_stm32h7.elf template_stm32h7.map: $(OBJS) $(USER_OBJS) /Users/tgspock/Github/STM32_learing.github.io/led_driver/STM32H743VITX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "template_stm32h7.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m7 -T"/Users/tgspock/Github/STM32_learing.github.io/led_driver/STM32H743VITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="template_stm32h7.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+	@echo 'Finished building target: $@'
 	@echo ' '
 
 default.size.stdout: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
 	arm-none-eabi-size  $(EXECUTABLES)
-	@echo '已结束构建： $@'
+	@echo 'Finished building: $@'
 	@echo ' '
 
 template_stm32h7.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
 	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "template_stm32h7.list"
-	@echo '已结束构建： $@'
+	@echo 'Finished building: $@'
 	@echo ' '
 
-# 其他目标
+# Other Targets
 clean:
 	-$(RM) default.size.stdout template_stm32h7.elf template_stm32h7.list template_stm32h7.map
 	-@echo ' '
