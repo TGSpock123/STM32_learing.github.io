@@ -11,8 +11,15 @@
 #ifndef __BSP_LED_DRIVER_H
 #define __BSP_LED_DRIVER_H
 
+//---includes---
 #include <stdio.h>
 #include <stdint.h>
+
+//---defines---
+//if use operating system, define OS_SUPORTING, if not using, undefine this.
+#define OS_SUPORTING
+#define LED_INITED 1
+#define LED_NOT_INITED 0
 
 typedef enum
 {
@@ -41,13 +48,24 @@ typedef struct
   led_status_t (* pf_get_time_ms)(uint32_t * const);
 }time_base_ms_t;
 
+#ifdef OS_SUPORTING
+
 typedef struct
 {
   led_status_t (* pf_os_delay_ms)(const uint32_t);
 }os_delay_t;
 
+#endif
+
+typedef led_status_t (* pf_led_ctrl_t)(uint32_t, //cycle_time_ms
+                                                                uint32_t, //blink_times
+                                                                proportion__t, //proportion_on_off
+                                                                );
+
 typedef struct
 {
+    //Internal status:
+    _Bool if_led_inited;
     //Features:
     //one blink time:
     uint32_t cycle_time_ms;
@@ -57,15 +75,25 @@ typedef struct
     proportion__t proportion_on_off;
 
     //IOs need:
+    //from core layer:
     led_operations_t * p_led_operation_inst;
     time_base_ms_t * p_time_base_ms;
-
     //from OS layer:
+#ifdef OS_SUPORTING
     os_delay_t * p_os_time_delay;
+#endif
 
     //APIs:
-
-
+    pf_led_ctrl_t p_led_ctrler;
 }bsp_led_driver_t;
+
+//---declaring---
+led_status_t led_driver_inst(bsp_led_driver_t * const self,
+                                                const led_operations_t * const led_operations,
+                                                const time_base_ms_t * const time_base
+#ifdef OS_SUPORTING
+                                              , const os_delay_t * const driver_os_delay
+#endif
+                                               );
 
 #endif /* LED_BSP_LED_DRIVER_H_ */
