@@ -22,11 +22,10 @@
 #include "task.h"
 #include "main.h"
 #include "cmsis_os.h"
-#include "SEGGER_RTT.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "bsp_led_driver.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -124,22 +123,25 @@ void MX_FREERTOS_Init(void) {
 void task_default_start(void *argument)
 {
   /* USER CODE BEGIN task_default_start */
-  SEGGER_RTT_printf(0, "Hello STM32H743. \r\n");
+  bsp_led_driver_t led_1;
+  led_1.if_led_inited = LED_NOT_INITED;
+  led_operations_t led_operations =
+  {
+      .pf_led_on = led_led_on,
+      .pf_led_off = led_led_off
+  };
+  time_base_ms_t led_time_base = 
+  {
+      .pf_get_time_ms = led_get_tick
+  };
+  os_delay_t led_delay = 
+  {
+      .pf_os_delay_ms = led_delay_ms
+  };
+  led_driver_inst(&led_1, &led_operations, &led_time_base, &led_delay);
   /* Infinite loop */
   for(;;)
   {
-    log_a("Hello Elog. \n");
-    vTaskDelay(200);
-    log_d("Hello Elog. \n");
-    vTaskDelay(200);
-    log_e("Hello Elog. \n");
-    vTaskDelay(200);
-    log_i("Hello Elog. \n");
-    vTaskDelay(200);
-    log_v("Hello Elog. \n");
-    vTaskDelay(200);
-    log_w("Hello Elog. \n");
-    vTaskDelay(200);
   }
   /* USER CODE END task_default_start */
 }

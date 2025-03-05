@@ -14,13 +14,23 @@
 //---includes---
 #include <stdio.h>
 #include <stdint.h>
+#include "SEGGER_RTT.h"
+#include "elog.h"
 
 //---defines---
-//if use operating system, define OS_SUPORTING, if not using, undefine this.
+//if use operating system, define OS_SUPORTING, else undefine this.
 #define OS_SUPORTING
+//if is in debug mode, define DEBUG, else undefine this.
+#ifndef DEBUG
+#define DEBUG
+#endif
+
+#define DEBUG_LOG(fmt, ...) SEGGER_RTT_printf(0, fmt, ##__VA_ARGS__)
+
 #define LED_INITED 1
 #define LED_NOT_INITED 0
 
+//prpportion_off_on: 
 typedef enum
 {
   PROPOR_1_1 = 0,
@@ -45,7 +55,7 @@ typedef struct
 
 typedef struct
 {
-  led_status_t (* pf_get_time_ms)(uint32_t * const);
+    uint32_t (* pf_get_time_ms)(void);
 }time_base_ms_t;
 
 #ifdef OS_SUPORTING
@@ -59,7 +69,7 @@ typedef struct
 
 typedef led_status_t (* pf_led_ctrl_t)(uint32_t, //cycle_time_ms
                                                                 uint32_t, //blink_times
-                                                                proportion__t, //proportion_on_off
+                                                                proportion__t //proportion_on_off
                                                                 );
 
 typedef struct
@@ -88,12 +98,20 @@ typedef struct
 }bsp_led_driver_t;
 
 //---declaring---
+//steps: 1. add core interfaces into bsp_led_driver_t instance.
+//           2. add OS interfaces into bsp_led_driver_t instance.
+//           3. add timebase interfaces into bsp_led_driver_t instance.
 led_status_t led_driver_inst(bsp_led_driver_t * const self,
-                                                const led_operations_t * const led_operations,
-                                                const time_base_ms_t * const time_base
+                                               led_operations_t * const led_operations,
+                                               time_base_ms_t * const time_base
 #ifdef OS_SUPORTING
-                                              , const os_delay_t * const driver_os_delay
+                                             , os_delay_t * const driver_os_delay
 #endif
                                                );
+//port: 
+led_status_t led_led_on(void);
+led_status_t led_led_off(void);
+uint32_t led_get_tick(void);
+led_status_t led_delay_ms(uint32_t const ms);
 
 #endif /* LED_BSP_LED_DRIVER_H_ */
