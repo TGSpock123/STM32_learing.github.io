@@ -31,6 +31,13 @@ led_status_t led_driver_init(bsp_led_driver_t * const self)
   
   return v_return;
 }
+
+led_status_t led_driver_ctrl(uint32_t cycle_time_ms, uint32_t blink_times, proportion__t proportion_off_on)
+{
+  led_status_t v_return = LED_OK;
+  
+}
+
 //---declaring---
 led_status_t led_driver_inst(bsp_led_driver_t * const self,
                                                led_operations_t * const led_operations,
@@ -85,7 +92,9 @@ led_status_t led_driver_inst(bsp_led_driver_t * const self,
   //init target:
   self -> blink_times = 0;
   self -> cycle_time_ms = 0;
-  self -> proportion_on_off = PROPOR_RESERVED;
+  self -> proportion_on_off.led_off_proportion = 0;
+  self -> proportion_on_off.led_on_proportion = 1;
+  self -> p_led_ctrler = led_driver_ctrl;
   
   v_return = led_driver_init(self);
   

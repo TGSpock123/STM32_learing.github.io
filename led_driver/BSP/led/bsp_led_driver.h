@@ -15,7 +15,6 @@
 #include <stdio.h>
 #include <stdint.h>
 #include "SEGGER_RTT.h"
-#include "elog.h"
 
 //---defines---
 //if use operating system, define OS_SUPORTING, else undefine this.
@@ -31,12 +30,10 @@
 #define LED_NOT_INITED 0
 
 //prpportion_off_on: 
-typedef enum
+typedef struct
 {
-  PROPOR_1_1 = 0,
-  PROPOR_1_2, PROPOR_1_3, PROPOR_2_1,
-  PROPOR_3_1, PROPOR_0_1, PROPOR_1_0,
-  PROPOR_RESERVED = 0xFF
+  uint8_t led_off_proportion;
+  uint8_t led_on_proportion;
 }proportion__t;
 
 typedef enum
@@ -68,9 +65,9 @@ typedef struct
 #endif
 
 typedef led_status_t (* pf_led_ctrl_t)(uint32_t, //cycle_time_ms
-                                                                uint32_t, //blink_times
-                                                                proportion__t //proportion_on_off
-                                                                );
+                                                              uint32_t, //blink_times
+                                                              proportion__t //proportion_off_on
+                                                              );
 
 typedef struct
 {
