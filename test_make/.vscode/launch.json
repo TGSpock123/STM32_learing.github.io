@@ -1,0 +1,45 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "stm32_make_debug",
+      "cwd": "${workspaceFolder}",
+      "executable": "./build/template_1.elf",
+      "request": "launch",
+      "type": "cortex-debug",
+      "runToEntryPoint": "main",
+      "servertype": "openocd",
+      "device": "STM32F411CEU6",
+      "svdFile": "./Tools/STM32F411.svd",
+      "configFiles": [
+        "./Tools/interface/jlink.cfg",
+        "./Tools/target/stm32f4x.cfg"
+      ],
+      "liveWatch": {
+        "enabled": true,
+        "samplesPerSecond": 4
+      },
+      "searchDir": [],
+      "showDevDebugOutput": "none"
+    },
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "cppdbg",
+      "request": "launch",
+      "args": [],
+      "stopAtEntry": false,
+      "externalConsole": true,
+      "cwd": "c:/GitHub/STM32_learing.github.io/test_make",
+      "program": "c:/GitHub/STM32_learing.github.io/test_make/build/Debug/outDebug",
+      "MIMode": "gdb",
+      "miDebuggerPath": "C:/Program Files/JetBrains/CLion 2024.3.4/bin/mingw/bin/gdb.exe",
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        }
+      ]
+    }
+  ]
+}

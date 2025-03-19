@@ -1,0 +1,56 @@
+{
+  // tasks数组定义了所有可用的任务
+  "tasks": [
+      // 编译任务配置
+      {
+          // 指定任务类型为shell命令
+          "type": "shell",
+          // 任务的标识名称
+          "label": "build",
+          // 要执行的命令
+          "command": "make",
+          // 命令的参数数组
+          "args": [
+              // -j 参数指定并行编译的任务数
+              "-j",
+              // 使用8个并行任务
+              "8"
+          ],
+          // 用于在VSCode中匹配编译错误信息的模式
+          "problemMatcher": [
+              "$gcc"
+          ],
+          // 指定任务所属的组
+          "group": "build"
+      },
+      // 烧录任务配置
+      {
+          // 指定任务类型为shell命令
+          "type": "shell",
+          // 任务的标识名称
+          "label": "flash",
+          // 使用openocd工具进行烧录
+          "command": "openocd",
+          // openocd命令的参数数组
+          "args": [
+              // 指定J-Link调试器配置文件
+              "-f",
+              "./Tools/interface/jlink.cfg",
+              // 指定目标芯片配置文件
+              "-f",
+              "./Tools/target/stm32f4x.cfg",
+              // 烧录、验证、复位并退出的命令
+              "-c",
+              "program ./build/template_1.elf verify reset exit"
+          ],
+          // 用于在VSCode中匹配错误信息的模式
+          "problemMatcher": [
+              "$gcc"
+          ],
+          // 指定任务所属的组
+          "group": "build"            
+      }
+  ],
+  // tasks.json的版本号
+  "version": "2.0.0"
+}

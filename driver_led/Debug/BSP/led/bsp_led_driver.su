@@ -1,0 +1,3 @@
+../BSP/led/bsp_led_driver.c:13:14:led_driver_init	24	static
+../BSP/led/bsp_led_driver.c:35:14:led_driver_ctrl	32	static
+../BSP/led/bsp_led_driver.c:46:14:led_driver_inst	32	static

@@ -1,0 +1,3 @@
+../Middlewares/Third_Party/EasyLogger/src/elog_utils.c:41:8:elog_strcpy	3
+../Middlewares/Third_Party/EasyLogger/src/elog_utils.c:67:8:elog_cpyln	4
+../Middlewares/Third_Party/EasyLogger/src/elog_utils.c:93:7:elog_memcpy	2

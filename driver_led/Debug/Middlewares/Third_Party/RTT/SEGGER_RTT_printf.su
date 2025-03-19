@@ -1,0 +1,5 @@
+../Middlewares/Third_Party/RTT/SEGGER_RTT_printf.c:107:13:_StoreChar	24	static
+../Middlewares/Third_Party/RTT/SEGGER_RTT_printf.c:132:13:_PrintUnsigned	48	static
+../Middlewares/Third_Party/RTT/SEGGER_RTT_printf.c:222:13:_PrintInt	40	static
+../Middlewares/Third_Party/RTT/SEGGER_RTT_printf.c:317:5:SEGGER_RTT_vprintf	152	static
+../Middlewares/Third_Party/RTT/SEGGER_RTT_printf.c:508:5:SEGGER_RTT_printf	28	static

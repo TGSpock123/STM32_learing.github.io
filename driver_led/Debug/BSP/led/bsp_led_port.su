@@ -1,0 +1,4 @@
+../BSP/led/bsp_led_port.c:12:14:led_led_on	8	static
+../BSP/led/bsp_led_port.c:21:14:led_led_off	8	static
+../BSP/led/bsp_led_port.c:30:10:led_get_tick	16	static
+../BSP/led/bsp_led_port.c:39:14:led_delay_ms	16	static
