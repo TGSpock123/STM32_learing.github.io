@@ -22,14 +22,14 @@ TARGET = template_1
 # debug build?
 DEBUG = 1
 # optimization
-OPT = -Og
+OPT = -O0
 
 
 #######################################
 # paths
 #######################################
 # Build path
-BUILD_DIR = build
+BUILD_DIR = make_build
 
 ######################################
 # source

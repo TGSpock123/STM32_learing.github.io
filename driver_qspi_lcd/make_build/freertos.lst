@@ -1,0 +1,321 @@
+ARM GAS  C:\Users\TGSPOC~1\AppData\Local\Temp\ccZ9Qihb.s 			page 1
+
+
+   1              		.cpu cortex-m7
+   2              		.arch armv7e-m
+   3              		.fpu fpv5-d16
+   4              		.eabi_attribute 28, 1
+   5              		.eabi_attribute 20, 1
+   6              		.eabi_attribute 21, 1
+   7              		.eabi_attribute 23, 3
+   8              		.eabi_attribute 24, 1
+   9              		.eabi_attribute 25, 1
+  10              		.eabi_attribute 26, 1
+  11              		.eabi_attribute 30, 6
+  12              		.eabi_attribute 34, 1
+  13              		.eabi_attribute 18, 4
+  14              		.file	"freertos.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.file 1 "Core/Src/freertos.c"
+  19              		.global	task_defaultHandle
+  20              		.section	.bss.task_defaultHandle,"aw",%nobits
+  21              		.align	2
+  24              	task_defaultHandle:
+  25 0000 00000000 		.space	4
+  26              		.global	task_default_attributes
+  27              		.section	.rodata
+  28              		.align	2
+  29              	.LC0:
+  30 0000 7461736B 		.ascii	"task_default\000"
+  30      5F646566 
+  30      61756C74 
+  30      00
+  31              		.section	.rodata.task_default_attributes,"a"
+  32              		.align	2
+  35              	task_default_attributes:
+  36 0000 00000000 		.word	.LC0
+  37 0004 00000000 		.space	16
+  37      00000000 
+  37      00000000 
+  37      00000000 
+  38 0014 00020000 		.word	512
+  39 0018 18000000 		.word	24
+  40 001c 00000000 		.space	8
+  40      00000000 
+  41              		.global	queue_defaultHandle
+  42              		.section	.bss.queue_defaultHandle,"aw",%nobits
+  43              		.align	2
+  46              	queue_defaultHandle:
+  47 0000 00000000 		.space	4
+  48              		.global	queue_default_attributes
+  49              		.section	.rodata
+  50 000d 000000   		.align	2
+  51              	.LC1:
+  52 0010 71756575 		.ascii	"queue_default\000"
+  52      655F6465 
+  52      6661756C 
+  52      7400
+  53              		.section	.rodata.queue_default_attributes,"a"
+ARM GAS  C:\Users\TGSPOC~1\AppData\Local\Temp\ccZ9Qihb.s 			page 2
+
+
+  54              		.align	2
+  57              	queue_default_attributes:
+  58 0000 10000000 		.word	.LC1
+  59 0004 00000000 		.space	20
+  59      00000000 
+  59      00000000 
+  59      00000000 
+  59      00000000 
+  60              		.section	.text.MX_FREERTOS_Init,"ax",%progbits
+  61              		.align	1
+  62              		.global	MX_FREERTOS_Init
+  63              		.syntax unified
+  64              		.thumb
+  65              		.thumb_func
+  67              	MX_FREERTOS_Init:
+  68              	.LFB148:
+   1:Core/Src/freertos.c **** /* USER CODE BEGIN Header */
+   2:Core/Src/freertos.c **** /**
+   3:Core/Src/freertos.c ****   ******************************************************************************
+   4:Core/Src/freertos.c ****   * File Name          : freertos.c
+   5:Core/Src/freertos.c ****   * Description        : Code for freertos applications
+   6:Core/Src/freertos.c ****   ******************************************************************************
+   7:Core/Src/freertos.c ****   * @attention
+   8:Core/Src/freertos.c ****   *
+   9:Core/Src/freertos.c ****   * Copyright (c) 2025 STMicroelectronics.
+  10:Core/Src/freertos.c ****   * All rights reserved.
+  11:Core/Src/freertos.c ****   *
+  12:Core/Src/freertos.c ****   * This software is licensed under terms that can be found in the LICENSE file
+  13:Core/Src/freertos.c ****   * in the root directory of this software component.
+  14:Core/Src/freertos.c ****   * If no LICENSE file comes with this software, it is provided AS-IS.
+  15:Core/Src/freertos.c ****   *
+  16:Core/Src/freertos.c ****   ******************************************************************************
+  17:Core/Src/freertos.c ****   */
+  18:Core/Src/freertos.c **** /* USER CODE END Header */
+  19:Core/Src/freertos.c **** 
+  20:Core/Src/freertos.c **** /* Includes ------------------------------------------------------------------*/
+  21:Core/Src/freertos.c **** #include "FreeRTOS.h"
+  22:Core/Src/freertos.c **** #include "task.h"
+  23:Core/Src/freertos.c **** #include "main.h"
+  24:Core/Src/freertos.c **** #include "cmsis_os.h"
+  25:Core/Src/freertos.c **** 
+  26:Core/Src/freertos.c **** /* Private includes ----------------------------------------------------------*/
+  27:Core/Src/freertos.c **** /* USER CODE BEGIN Includes */
+  28:Core/Src/freertos.c **** #include "driver_st77916.h"
+  29:Core/Src/freertos.c **** /* USER CODE END Includes */
+  30:Core/Src/freertos.c **** 
+  31:Core/Src/freertos.c **** /* Private typedef -----------------------------------------------------------*/
+  32:Core/Src/freertos.c **** /* USER CODE BEGIN PTD */
+  33:Core/Src/freertos.c **** 
+  34:Core/Src/freertos.c **** /* USER CODE END PTD */
+  35:Core/Src/freertos.c **** 
+  36:Core/Src/freertos.c **** /* Private define ------------------------------------------------------------*/
+  37:Core/Src/freertos.c **** /* USER CODE BEGIN PD */
+  38:Core/Src/freertos.c **** 
+  39:Core/Src/freertos.c **** /* USER CODE END PD */
+  40:Core/Src/freertos.c **** 
+  41:Core/Src/freertos.c **** /* Private macro -------------------------------------------------------------*/
+ARM GAS  C:\Users\TGSPOC~1\AppData\Local\Temp\ccZ9Qihb.s 			page 3
+
+
+  42:Core/Src/freertos.c **** /* USER CODE BEGIN PM */
+  43:Core/Src/freertos.c **** 
+  44:Core/Src/freertos.c **** /* USER CODE END PM */
+  45:Core/Src/freertos.c **** 
+  46:Core/Src/freertos.c **** /* Private variables ---------------------------------------------------------*/
+  47:Core/Src/freertos.c **** /* USER CODE BEGIN Variables */
+  48:Core/Src/freertos.c **** 
+  49:Core/Src/freertos.c **** /* USER CODE END Variables */
+  50:Core/Src/freertos.c **** /* Definitions for task_default */
+  51:Core/Src/freertos.c **** osThreadId_t task_defaultHandle;
+  52:Core/Src/freertos.c **** const osThreadAttr_t task_default_attributes = {
+  53:Core/Src/freertos.c ****   .name = "task_default",
+  54:Core/Src/freertos.c ****   .stack_size = 128 * 4,
+  55:Core/Src/freertos.c ****   .priority = (osPriority_t) osPriorityNormal,
+  56:Core/Src/freertos.c **** };
+  57:Core/Src/freertos.c **** /* Definitions for queue_default */
+  58:Core/Src/freertos.c **** osMessageQueueId_t queue_defaultHandle;
+  59:Core/Src/freertos.c **** const osMessageQueueAttr_t queue_default_attributes = {
+  60:Core/Src/freertos.c ****   .name = "queue_default"
+  61:Core/Src/freertos.c **** };
+  62:Core/Src/freertos.c **** 
+  63:Core/Src/freertos.c **** /* Private function prototypes -----------------------------------------------*/
+  64:Core/Src/freertos.c **** /* USER CODE BEGIN FunctionPrototypes */
+  65:Core/Src/freertos.c **** 
+  66:Core/Src/freertos.c **** /* USER CODE END FunctionPrototypes */
+  67:Core/Src/freertos.c **** 
+  68:Core/Src/freertos.c **** void task_default_start(void *argument);
+  69:Core/Src/freertos.c **** 
+  70:Core/Src/freertos.c **** void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
+  71:Core/Src/freertos.c **** 
+  72:Core/Src/freertos.c **** /**
+  73:Core/Src/freertos.c ****   * @brief  FreeRTOS initialization
+  74:Core/Src/freertos.c ****   * @param  None
+  75:Core/Src/freertos.c ****   * @retval None
+  76:Core/Src/freertos.c ****   */
+  77:Core/Src/freertos.c **** void MX_FREERTOS_Init(void) {
+  69              		.loc 1 77 29
+  70              		.cfi_startproc
+  71              		@ args = 0, pretend = 0, frame = 0
+  72              		@ frame_needed = 1, uses_anonymous_args = 0
+  73 0000 80B5     		push	{r7, lr}
+  74              	.LCFI0:
+  75              		.cfi_def_cfa_offset 8
+  76              		.cfi_offset 7, -8
+  77              		.cfi_offset 14, -4
+  78 0002 00AF     		add	r7, sp, #0
+  79              	.LCFI1:
+  80              		.cfi_def_cfa_register 7
+  78:Core/Src/freertos.c ****   /* USER CODE BEGIN Init */
+  79:Core/Src/freertos.c **** 
+  80:Core/Src/freertos.c ****   /* USER CODE END Init */
+  81:Core/Src/freertos.c **** 
+  82:Core/Src/freertos.c ****   /* USER CODE BEGIN RTOS_MUTEX */
+  83:Core/Src/freertos.c ****   /* add mutexes, ... */
+  84:Core/Src/freertos.c ****   /* USER CODE END RTOS_MUTEX */
+  85:Core/Src/freertos.c **** 
+  86:Core/Src/freertos.c ****   /* USER CODE BEGIN RTOS_SEMAPHORES */
+ARM GAS  C:\Users\TGSPOC~1\AppData\Local\Temp\ccZ9Qihb.s 			page 4
+
+
+  87:Core/Src/freertos.c ****   /* add semaphores, ... */
+  88:Core/Src/freertos.c ****   /* USER CODE END RTOS_SEMAPHORES */
+  89:Core/Src/freertos.c **** 
+  90:Core/Src/freertos.c ****   /* USER CODE BEGIN RTOS_TIMERS */
+  91:Core/Src/freertos.c ****   /* start timers, add new ones, ... */
+  92:Core/Src/freertos.c ****   /* USER CODE END RTOS_TIMERS */
+  93:Core/Src/freertos.c **** 
+  94:Core/Src/freertos.c ****   /* Create the queue(s) */
+  95:Core/Src/freertos.c ****   /* creation of queue_default */
+  96:Core/Src/freertos.c ****   queue_defaultHandle = osMessageQueueNew (1, sizeof(uint32_t), &queue_default_attributes);
+  81              		.loc 1 96 25
+  82 0004 084A     		ldr	r2, .L2
+  83 0006 0421     		movs	r1, #4
+  84 0008 0120     		movs	r0, #1
+  85 000a FFF7FEFF 		bl	osMessageQueueNew
+  86 000e 0346     		mov	r3, r0
+  87              		.loc 1 96 23 discriminator 1
+  88 0010 064A     		ldr	r2, .L2+4
+  89 0012 1360     		str	r3, [r2]
+  97:Core/Src/freertos.c **** 
+  98:Core/Src/freertos.c ****   /* USER CODE BEGIN RTOS_QUEUES */
+  99:Core/Src/freertos.c ****   /* add queues, ... */
+ 100:Core/Src/freertos.c ****   /* USER CODE END RTOS_QUEUES */
+ 101:Core/Src/freertos.c **** 
+ 102:Core/Src/freertos.c ****   /* Create the thread(s) */
+ 103:Core/Src/freertos.c ****   /* creation of task_default */
+ 104:Core/Src/freertos.c ****   task_defaultHandle = osThreadNew(task_default_start, NULL, &task_default_attributes);
+  90              		.loc 1 104 24
+  91 0014 064A     		ldr	r2, .L2+8
+  92 0016 0021     		movs	r1, #0
+  93 0018 0648     		ldr	r0, .L2+12
+  94 001a FFF7FEFF 		bl	osThreadNew
+  95 001e 0346     		mov	r3, r0
+  96              		.loc 1 104 22 discriminator 1
+  97 0020 054A     		ldr	r2, .L2+16
+  98 0022 1360     		str	r3, [r2]
+ 105:Core/Src/freertos.c **** 
+ 106:Core/Src/freertos.c ****   /* USER CODE BEGIN RTOS_THREADS */
+ 107:Core/Src/freertos.c ****   /* add threads, ... */
+ 108:Core/Src/freertos.c ****   /* USER CODE END RTOS_THREADS */
+ 109:Core/Src/freertos.c **** 
+ 110:Core/Src/freertos.c ****   /* USER CODE BEGIN RTOS_EVENTS */
+ 111:Core/Src/freertos.c ****   /* add events, ... */
+ 112:Core/Src/freertos.c ****   /* USER CODE END RTOS_EVENTS */
+ 113:Core/Src/freertos.c **** 
+ 114:Core/Src/freertos.c **** }
+  99              		.loc 1 114 1
+ 100 0024 00BF     		nop
+ 101 0026 80BD     		pop	{r7, pc}
+ 102              	.L3:
+ 103              		.align	2
+ 104              	.L2:
+ 105 0028 00000000 		.word	queue_default_attributes
+ 106 002c 00000000 		.word	queue_defaultHandle
+ 107 0030 00000000 		.word	task_default_attributes
+ 108 0034 00000000 		.word	task_default_start
+ 109 0038 00000000 		.word	task_defaultHandle
+ARM GAS  C:\Users\TGSPOC~1\AppData\Local\Temp\ccZ9Qihb.s 			page 5
+
+
+ 110              		.cfi_endproc
+ 111              	.LFE148:
+ 113              		.section	.text.task_default_start,"ax",%progbits
+ 114              		.align	1
+ 115              		.global	task_default_start
+ 116              		.syntax unified
+ 117              		.thumb
+ 118              		.thumb_func
+ 120              	task_default_start:
+ 121              	.LFB149:
+ 115:Core/Src/freertos.c **** 
+ 116:Core/Src/freertos.c **** /* USER CODE BEGIN Header_task_default_start */
+ 117:Core/Src/freertos.c **** /**
+ 118:Core/Src/freertos.c ****   * @brief  Function implementing the task_default thread.
+ 119:Core/Src/freertos.c ****   * @param  argument: Not used
+ 120:Core/Src/freertos.c ****   * @retval None
+ 121:Core/Src/freertos.c ****   */
+ 122:Core/Src/freertos.c **** /* USER CODE END Header_task_default_start */
+ 123:Core/Src/freertos.c **** void task_default_start(void *argument)
+ 124:Core/Src/freertos.c **** {
+ 122              		.loc 1 124 1
+ 123              		.cfi_startproc
+ 124              		@ args = 0, pretend = 0, frame = 8
+ 125              		@ frame_needed = 1, uses_anonymous_args = 0
+ 126 0000 80B5     		push	{r7, lr}
+ 127              	.LCFI2:
+ 128              		.cfi_def_cfa_offset 8
+ 129              		.cfi_offset 7, -8
+ 130              		.cfi_offset 14, -4
+ 131 0002 82B0     		sub	sp, sp, #8
+ 132              	.LCFI3:
+ 133              		.cfi_def_cfa_offset 16
+ 134 0004 00AF     		add	r7, sp, #0
+ 135              	.LCFI4:
+ 136              		.cfi_def_cfa_register 7
+ 137 0006 7860     		str	r0, [r7, #4]
+ 138              	.L5:
+ 125:Core/Src/freertos.c ****   /* USER CODE BEGIN task_default_start */
+ 126:Core/Src/freertos.c ****   /* Infinite loop */
+ 127:Core/Src/freertos.c ****   for(;;)
+ 128:Core/Src/freertos.c ****   {
+ 129:Core/Src/freertos.c ****     driver_st77916_fillscreen(0xFF0000);
+ 139              		.loc 1 129 5 discriminator 1
+ 140 0008 4FF47F00 		mov	r0, #16711680
+ 141 000c FFF7FEFF 		bl	driver_st77916_fillscreen
+ 142 0010 FAE7     		b	.L5
+ 143              		.cfi_endproc
+ 144              	.LFE149:
+ 146              		.text
+ 147              	.Letext0:
+ 148              		.file 2 "C:/gcc_vsc/arm_gcc/14.2 rel1/arm-none-eabi/include/machine/_default_types.h"
+ 149              		.file 3 "C:/gcc_vsc/arm_gcc/14.2 rel1/arm-none-eabi/include/sys/_stdint.h"
+ 150              		.file 4 "Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.h"
+ 151              		.file 5 "BSP/ST77916/Inc/driver_st77916.h"
+ARM GAS  C:\Users\TGSPOC~1\AppData\Local\Temp\ccZ9Qihb.s 			page 6
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 freertos.c
+C:\Users\TGSPOC~1\AppData\Local\Temp\ccZ9Qihb.s:24     .bss.task_defaultHandle:00000000 task_defaultHandle
+C:\Users\TGSPOC~1\AppData\Local\Temp\ccZ9Qihb.s:21     .bss.task_defaultHandle:00000000 $d
+C:\Users\TGSPOC~1\AppData\Local\Temp\ccZ9Qihb.s:35     .rodata.task_default_attributes:00000000 task_default_attributes
+C:\Users\TGSPOC~1\AppData\Local\Temp\ccZ9Qihb.s:28     .rodata:00000000 $d
+C:\Users\TGSPOC~1\AppData\Local\Temp\ccZ9Qihb.s:32     .rodata.task_default_attributes:00000000 $d
+C:\Users\TGSPOC~1\AppData\Local\Temp\ccZ9Qihb.s:46     .bss.queue_defaultHandle:00000000 queue_defaultHandle
+C:\Users\TGSPOC~1\AppData\Local\Temp\ccZ9Qihb.s:43     .bss.queue_defaultHandle:00000000 $d
+C:\Users\TGSPOC~1\AppData\Local\Temp\ccZ9Qihb.s:57     .rodata.queue_default_attributes:00000000 queue_default_attributes
+C:\Users\TGSPOC~1\AppData\Local\Temp\ccZ9Qihb.s:54     .rodata.queue_default_attributes:00000000 $d
+C:\Users\TGSPOC~1\AppData\Local\Temp\ccZ9Qihb.s:61     .text.MX_FREERTOS_Init:00000000 $t
+C:\Users\TGSPOC~1\AppData\Local\Temp\ccZ9Qihb.s:67     .text.MX_FREERTOS_Init:00000000 MX_FREERTOS_Init
+C:\Users\TGSPOC~1\AppData\Local\Temp\ccZ9Qihb.s:105    .text.MX_FREERTOS_Init:00000028 $d
+C:\Users\TGSPOC~1\AppData\Local\Temp\ccZ9Qihb.s:120    .text.task_default_start:00000000 task_default_start
+C:\Users\TGSPOC~1\AppData\Local\Temp\ccZ9Qihb.s:114    .text.task_default_start:00000000 $t
+
+UNDEFINED SYMBOLS
+osMessageQueueNew
+osThreadNew
+driver_st77916_fillscreen

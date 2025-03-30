@@ -161,9 +161,11 @@ void MX_FREERTOS_Init(void) {
 void start_t_input(void *argument)
 {
   /* USER CODE BEGIN start_t_input */
+  uint16_t num = 0;
   /* Infinite loop */
   for(;;)
   {
+    num ++;
     HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_0);
     osDelay(500);
   }

@@ -41,7 +41,7 @@
               "./Tools/target/stm32f4x.cfg",
               // 烧录、验证、复位并退出的命令
               "-c",
-              "program ./build/template_1.elf verify reset exit"
+              "program ./make_build/template_1.elf verify reset exit"
           ],
           // 用于在VSCode中匹配错误信息的模式
           "problemMatcher": [

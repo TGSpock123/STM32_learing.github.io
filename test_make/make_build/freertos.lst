@@ -1,0 +1,656 @@
+ARM GAS  C:\Users\TGSPOC~1\AppData\Local\Temp\ccN5Zqvw.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 6
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"freertos.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.file 1 "Core/Src/freertos.c"
+  20              		.global	t_inputHandle
+  21              		.section	.bss.t_inputHandle,"aw",%nobits
+  22              		.align	2
+  25              	t_inputHandle:
+  26 0000 00000000 		.space	4
+  27              		.global	t_input_attributes
+  28              		.section	.rodata
+  29              		.align	2
+  30              	.LC0:
+  31 0000 745F696E 		.ascii	"t_input\000"
+  31      70757400 
+  32              		.section	.rodata.t_input_attributes,"a"
+  33              		.align	2
+  36              	t_input_attributes:
+  37 0000 00000000 		.word	.LC0
+  38 0004 00000000 		.space	16
+  38      00000000 
+  38      00000000 
+  38      00000000 
+  39 0014 00020000 		.word	512
+  40 0018 20000000 		.word	32
+  41 001c 00000000 		.space	8
+  41      00000000 
+  42              		.global	t_logHandle
+  43              		.section	.bss.t_logHandle,"aw",%nobits
+  44              		.align	2
+  47              	t_logHandle:
+  48 0000 00000000 		.space	4
+  49              		.global	t_log_attributes
+  50              		.section	.rodata
+  51              		.align	2
+  52              	.LC1:
+  53 0008 745F6C6F 		.ascii	"t_log\000"
+  53      6700
+  54              		.section	.rodata.t_log_attributes,"a"
+  55              		.align	2
+  58              	t_log_attributes:
+  59 0000 08000000 		.word	.LC1
+ARM GAS  C:\Users\TGSPOC~1\AppData\Local\Temp\ccN5Zqvw.s 			page 2
+
+
+  60 0004 00000000 		.space	16
+  60      00000000 
+  60      00000000 
+  60      00000000 
+  61 0014 00020000 		.word	512
+  62 0018 18000000 		.word	24
+  63 001c 00000000 		.space	8
+  63      00000000 
+  64              		.global	t_outputHandle
+  65              		.section	.bss.t_outputHandle,"aw",%nobits
+  66              		.align	2
+  69              	t_outputHandle:
+  70 0000 00000000 		.space	4
+  71              		.global	t_output_attributes
+  72              		.section	.rodata
+  73 000e 0000     		.align	2
+  74              	.LC2:
+  75 0010 745F6F75 		.ascii	"t_output\000"
+  75      74707574 
+  75      00
+  76              		.section	.rodata.t_output_attributes,"a"
+  77              		.align	2
+  80              	t_output_attributes:
+  81 0000 10000000 		.word	.LC2
+  82 0004 00000000 		.space	16
+  82      00000000 
+  82      00000000 
+  82      00000000 
+  83 0014 00020000 		.word	512
+  84 0018 18000000 		.word	24
+  85 001c 00000000 		.space	8
+  85      00000000 
+  86              		.global	m_input_to_logHandle
+  87              		.section	.bss.m_input_to_logHandle,"aw",%nobits
+  88              		.align	2
+  91              	m_input_to_logHandle:
+  92 0000 00000000 		.space	4
+  93              		.global	m_input_to_log_attributes
+  94              		.section	.rodata
+  95 0019 000000   		.align	2
+  96              	.LC3:
+  97 001c 6D5F696E 		.ascii	"m_input_to_log\000"
+  97      7075745F 
+  97      746F5F6C 
+  97      6F6700
+  98              		.section	.rodata.m_input_to_log_attributes,"a"
+  99              		.align	2
+ 102              	m_input_to_log_attributes:
+ 103 0000 1C000000 		.word	.LC3
+ 104 0004 00000000 		.space	20
+ 104      00000000 
+ 104      00000000 
+ 104      00000000 
+ 104      00000000 
+ 105              		.global	m_log_to_outputHandle
+ 106              		.section	.bss.m_log_to_outputHandle,"aw",%nobits
+ 107              		.align	2
+ARM GAS  C:\Users\TGSPOC~1\AppData\Local\Temp\ccN5Zqvw.s 			page 3
+
+
+ 110              	m_log_to_outputHandle:
+ 111 0000 00000000 		.space	4
+ 112              		.global	m_log_to_output_attributes
+ 113              		.section	.rodata
+ 114 002b 00       		.align	2
+ 115              	.LC4:
+ 116 002c 6D5F6C6F 		.ascii	"m_log_to_output\000"
+ 116      675F746F 
+ 116      5F6F7574 
+ 116      70757400 
+ 117              		.section	.rodata.m_log_to_output_attributes,"a"
+ 118              		.align	2
+ 121              	m_log_to_output_attributes:
+ 122 0000 2C000000 		.word	.LC4
+ 123 0004 00000000 		.space	20
+ 123      00000000 
+ 123      00000000 
+ 123      00000000 
+ 123      00000000 
+ 124              		.global	m_output_to_inputHandle
+ 125              		.section	.bss.m_output_to_inputHandle,"aw",%nobits
+ 126              		.align	2
+ 129              	m_output_to_inputHandle:
+ 130 0000 00000000 		.space	4
+ 131              		.global	m_output_to_input_attributes
+ 132              		.section	.rodata
+ 133              		.align	2
+ 134              	.LC5:
+ 135 003c 6D5F6F75 		.ascii	"m_output_to_input\000"
+ 135      74707574 
+ 135      5F746F5F 
+ 135      696E7075 
+ 135      7400
+ 136              		.section	.rodata.m_output_to_input_attributes,"a"
+ 137              		.align	2
+ 140              	m_output_to_input_attributes:
+ 141 0000 3C000000 		.word	.LC5
+ 142 0004 00000000 		.space	20
+ 142      00000000 
+ 142      00000000 
+ 142      00000000 
+ 142      00000000 
+ 143              		.section	.text.MX_FREERTOS_Init,"ax",%progbits
+ 144              		.align	1
+ 145              		.global	MX_FREERTOS_Init
+ 146              		.syntax unified
+ 147              		.thumb
+ 148              		.thumb_func
+ 150              	MX_FREERTOS_Init:
+ 151              	.LFB138:
+   1:Core/Src/freertos.c **** /* USER CODE BEGIN Header */
+   2:Core/Src/freertos.c **** /**
+   3:Core/Src/freertos.c ****   ******************************************************************************
+   4:Core/Src/freertos.c ****   * File Name          : freertos.c
+   5:Core/Src/freertos.c ****   * Description        : Code for freertos applications
+   6:Core/Src/freertos.c ****   ******************************************************************************
+   7:Core/Src/freertos.c ****   * @attention
+ARM GAS  C:\Users\TGSPOC~1\AppData\Local\Temp\ccN5Zqvw.s 			page 4
+
+
+   8:Core/Src/freertos.c ****   *
+   9:Core/Src/freertos.c ****   * Copyright (c) 2025 STMicroelectronics.
+  10:Core/Src/freertos.c ****   * All rights reserved.
+  11:Core/Src/freertos.c ****   *
+  12:Core/Src/freertos.c ****   * This software is licensed under terms that can be found in the LICENSE file
+  13:Core/Src/freertos.c ****   * in the root directory of this software component.
+  14:Core/Src/freertos.c ****   * If no LICENSE file comes with this software, it is provided AS-IS.
+  15:Core/Src/freertos.c ****   *
+  16:Core/Src/freertos.c ****   ******************************************************************************
+  17:Core/Src/freertos.c ****   */
+  18:Core/Src/freertos.c **** /* USER CODE END Header */
+  19:Core/Src/freertos.c **** 
+  20:Core/Src/freertos.c **** /* Includes ------------------------------------------------------------------*/
+  21:Core/Src/freertos.c **** #include "FreeRTOS.h"
+  22:Core/Src/freertos.c **** #include "task.h"
+  23:Core/Src/freertos.c **** #include "main.h"
+  24:Core/Src/freertos.c **** #include "cmsis_os.h"
+  25:Core/Src/freertos.c **** 
+  26:Core/Src/freertos.c **** /* Private includes ----------------------------------------------------------*/
+  27:Core/Src/freertos.c **** /* USER CODE BEGIN Includes */
+  28:Core/Src/freertos.c **** 
+  29:Core/Src/freertos.c **** /* USER CODE END Includes */
+  30:Core/Src/freertos.c **** 
+  31:Core/Src/freertos.c **** /* Private typedef -----------------------------------------------------------*/
+  32:Core/Src/freertos.c **** /* USER CODE BEGIN PTD */
+  33:Core/Src/freertos.c **** 
+  34:Core/Src/freertos.c **** /* USER CODE END PTD */
+  35:Core/Src/freertos.c **** 
+  36:Core/Src/freertos.c **** /* Private define ------------------------------------------------------------*/
+  37:Core/Src/freertos.c **** /* USER CODE BEGIN PD */
+  38:Core/Src/freertos.c **** 
+  39:Core/Src/freertos.c **** /* USER CODE END PD */
+  40:Core/Src/freertos.c **** 
+  41:Core/Src/freertos.c **** /* Private macro -------------------------------------------------------------*/
+  42:Core/Src/freertos.c **** /* USER CODE BEGIN PM */
+  43:Core/Src/freertos.c **** 
+  44:Core/Src/freertos.c **** /* USER CODE END PM */
+  45:Core/Src/freertos.c **** 
+  46:Core/Src/freertos.c **** /* Private variables ---------------------------------------------------------*/
+  47:Core/Src/freertos.c **** /* USER CODE BEGIN Variables */
+  48:Core/Src/freertos.c **** 
+  49:Core/Src/freertos.c **** /* USER CODE END Variables */
+  50:Core/Src/freertos.c **** /* Definitions for t_input */
+  51:Core/Src/freertos.c **** osThreadId_t t_inputHandle;
+  52:Core/Src/freertos.c **** const osThreadAttr_t t_input_attributes = {
+  53:Core/Src/freertos.c ****   .name = "t_input",
+  54:Core/Src/freertos.c ****   .stack_size = 128 * 4,
+  55:Core/Src/freertos.c ****   .priority = (osPriority_t) osPriorityAboveNormal,
+  56:Core/Src/freertos.c **** };
+  57:Core/Src/freertos.c **** /* Definitions for t_log */
+  58:Core/Src/freertos.c **** osThreadId_t t_logHandle;
+  59:Core/Src/freertos.c **** const osThreadAttr_t t_log_attributes = {
+  60:Core/Src/freertos.c ****   .name = "t_log",
+  61:Core/Src/freertos.c ****   .stack_size = 128 * 4,
+  62:Core/Src/freertos.c ****   .priority = (osPriority_t) osPriorityNormal,
+  63:Core/Src/freertos.c **** };
+  64:Core/Src/freertos.c **** /* Definitions for t_output */
+ARM GAS  C:\Users\TGSPOC~1\AppData\Local\Temp\ccN5Zqvw.s 			page 5
+
+
+  65:Core/Src/freertos.c **** osThreadId_t t_outputHandle;
+  66:Core/Src/freertos.c **** const osThreadAttr_t t_output_attributes = {
+  67:Core/Src/freertos.c ****   .name = "t_output",
+  68:Core/Src/freertos.c ****   .stack_size = 128 * 4,
+  69:Core/Src/freertos.c ****   .priority = (osPriority_t) osPriorityNormal,
+  70:Core/Src/freertos.c **** };
+  71:Core/Src/freertos.c **** /* Definitions for m_input_to_log */
+  72:Core/Src/freertos.c **** osMessageQueueId_t m_input_to_logHandle;
+  73:Core/Src/freertos.c **** const osMessageQueueAttr_t m_input_to_log_attributes = {
+  74:Core/Src/freertos.c ****   .name = "m_input_to_log"
+  75:Core/Src/freertos.c **** };
+  76:Core/Src/freertos.c **** /* Definitions for m_log_to_output */
+  77:Core/Src/freertos.c **** osMessageQueueId_t m_log_to_outputHandle;
+  78:Core/Src/freertos.c **** const osMessageQueueAttr_t m_log_to_output_attributes = {
+  79:Core/Src/freertos.c ****   .name = "m_log_to_output"
+  80:Core/Src/freertos.c **** };
+  81:Core/Src/freertos.c **** /* Definitions for m_output_to_input */
+  82:Core/Src/freertos.c **** osMessageQueueId_t m_output_to_inputHandle;
+  83:Core/Src/freertos.c **** const osMessageQueueAttr_t m_output_to_input_attributes = {
+  84:Core/Src/freertos.c ****   .name = "m_output_to_input"
+  85:Core/Src/freertos.c **** };
+  86:Core/Src/freertos.c **** 
+  87:Core/Src/freertos.c **** /* Private function prototypes -----------------------------------------------*/
+  88:Core/Src/freertos.c **** /* USER CODE BEGIN FunctionPrototypes */
+  89:Core/Src/freertos.c **** 
+  90:Core/Src/freertos.c **** /* USER CODE END FunctionPrototypes */
+  91:Core/Src/freertos.c **** 
+  92:Core/Src/freertos.c **** void start_t_input(void *argument);
+  93:Core/Src/freertos.c **** void start_t_log(void *argument);
+  94:Core/Src/freertos.c **** void start_t_output(void *argument);
+  95:Core/Src/freertos.c **** 
+  96:Core/Src/freertos.c **** void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
+  97:Core/Src/freertos.c **** 
+  98:Core/Src/freertos.c **** /**
+  99:Core/Src/freertos.c ****   * @brief  FreeRTOS initialization
+ 100:Core/Src/freertos.c ****   * @param  None
+ 101:Core/Src/freertos.c ****   * @retval None
+ 102:Core/Src/freertos.c ****   */
+ 103:Core/Src/freertos.c **** void MX_FREERTOS_Init(void) {
+ 152              		.loc 1 103 29
+ 153              		.cfi_startproc
+ 154              		@ args = 0, pretend = 0, frame = 0
+ 155              		@ frame_needed = 1, uses_anonymous_args = 0
+ 156 0000 80B5     		push	{r7, lr}
+ 157              	.LCFI0:
+ 158              		.cfi_def_cfa_offset 8
+ 159              		.cfi_offset 7, -8
+ 160              		.cfi_offset 14, -4
+ 161 0002 00AF     		add	r7, sp, #0
+ 162              	.LCFI1:
+ 163              		.cfi_def_cfa_register 7
+ 104:Core/Src/freertos.c ****   /* USER CODE BEGIN Init */
+ 105:Core/Src/freertos.c **** 
+ 106:Core/Src/freertos.c ****   /* USER CODE END Init */
+ 107:Core/Src/freertos.c **** 
+ 108:Core/Src/freertos.c ****   /* USER CODE BEGIN RTOS_MUTEX */
+ 109:Core/Src/freertos.c ****   /* add mutexes, ... */
+ARM GAS  C:\Users\TGSPOC~1\AppData\Local\Temp\ccN5Zqvw.s 			page 6
+
+
+ 110:Core/Src/freertos.c ****   /* USER CODE END RTOS_MUTEX */
+ 111:Core/Src/freertos.c **** 
+ 112:Core/Src/freertos.c ****   /* USER CODE BEGIN RTOS_SEMAPHORES */
+ 113:Core/Src/freertos.c ****   /* add semaphores, ... */
+ 114:Core/Src/freertos.c ****   /* USER CODE END RTOS_SEMAPHORES */
+ 115:Core/Src/freertos.c **** 
+ 116:Core/Src/freertos.c ****   /* USER CODE BEGIN RTOS_TIMERS */
+ 117:Core/Src/freertos.c ****   /* start timers, add new ones, ... */
+ 118:Core/Src/freertos.c ****   /* USER CODE END RTOS_TIMERS */
+ 119:Core/Src/freertos.c **** 
+ 120:Core/Src/freertos.c ****   /* Create the queue(s) */
+ 121:Core/Src/freertos.c ****   /* creation of m_input_to_log */
+ 122:Core/Src/freertos.c ****   m_input_to_logHandle = osMessageQueueNew (1, sizeof(uint32_t), &m_input_to_log_attributes);
+ 164              		.loc 1 122 26
+ 165 0004 184A     		ldr	r2, .L2
+ 166 0006 0421     		movs	r1, #4
+ 167 0008 0120     		movs	r0, #1
+ 168 000a FFF7FEFF 		bl	osMessageQueueNew
+ 169 000e 0346     		mov	r3, r0
+ 170              		.loc 1 122 24 discriminator 1
+ 171 0010 164A     		ldr	r2, .L2+4
+ 172 0012 1360     		str	r3, [r2]
+ 123:Core/Src/freertos.c **** 
+ 124:Core/Src/freertos.c ****   /* creation of m_log_to_output */
+ 125:Core/Src/freertos.c ****   m_log_to_outputHandle = osMessageQueueNew (1, sizeof(uint32_t), &m_log_to_output_attributes);
+ 173              		.loc 1 125 27
+ 174 0014 164A     		ldr	r2, .L2+8
+ 175 0016 0421     		movs	r1, #4
+ 176 0018 0120     		movs	r0, #1
+ 177 001a FFF7FEFF 		bl	osMessageQueueNew
+ 178 001e 0346     		mov	r3, r0
+ 179              		.loc 1 125 25 discriminator 1
+ 180 0020 144A     		ldr	r2, .L2+12
+ 181 0022 1360     		str	r3, [r2]
+ 126:Core/Src/freertos.c **** 
+ 127:Core/Src/freertos.c ****   /* creation of m_output_to_input */
+ 128:Core/Src/freertos.c ****   m_output_to_inputHandle = osMessageQueueNew (1, sizeof(uint32_t), &m_output_to_input_attributes);
+ 182              		.loc 1 128 29
+ 183 0024 144A     		ldr	r2, .L2+16
+ 184 0026 0421     		movs	r1, #4
+ 185 0028 0120     		movs	r0, #1
+ 186 002a FFF7FEFF 		bl	osMessageQueueNew
+ 187 002e 0346     		mov	r3, r0
+ 188              		.loc 1 128 27 discriminator 1
+ 189 0030 124A     		ldr	r2, .L2+20
+ 190 0032 1360     		str	r3, [r2]
+ 129:Core/Src/freertos.c **** 
+ 130:Core/Src/freertos.c ****   /* USER CODE BEGIN RTOS_QUEUES */
+ 131:Core/Src/freertos.c ****   /* add queues, ... */
+ 132:Core/Src/freertos.c ****   /* USER CODE END RTOS_QUEUES */
+ 133:Core/Src/freertos.c **** 
+ 134:Core/Src/freertos.c ****   /* Create the thread(s) */
+ 135:Core/Src/freertos.c ****   /* creation of t_input */
+ 136:Core/Src/freertos.c ****   t_inputHandle = osThreadNew(start_t_input, NULL, &t_input_attributes);
+ 191              		.loc 1 136 19
+ 192 0034 124A     		ldr	r2, .L2+24
+ 193 0036 0021     		movs	r1, #0
+ARM GAS  C:\Users\TGSPOC~1\AppData\Local\Temp\ccN5Zqvw.s 			page 7
+
+
+ 194 0038 1248     		ldr	r0, .L2+28
+ 195 003a FFF7FEFF 		bl	osThreadNew
+ 196 003e 0346     		mov	r3, r0
+ 197              		.loc 1 136 17 discriminator 1
+ 198 0040 114A     		ldr	r2, .L2+32
+ 199 0042 1360     		str	r3, [r2]
+ 137:Core/Src/freertos.c **** 
+ 138:Core/Src/freertos.c ****   /* creation of t_log */
+ 139:Core/Src/freertos.c ****   t_logHandle = osThreadNew(start_t_log, NULL, &t_log_attributes);
+ 200              		.loc 1 139 17
+ 201 0044 114A     		ldr	r2, .L2+36
+ 202 0046 0021     		movs	r1, #0
+ 203 0048 1148     		ldr	r0, .L2+40
+ 204 004a FFF7FEFF 		bl	osThreadNew
+ 205 004e 0346     		mov	r3, r0
+ 206              		.loc 1 139 15 discriminator 1
+ 207 0050 104A     		ldr	r2, .L2+44
+ 208 0052 1360     		str	r3, [r2]
+ 140:Core/Src/freertos.c **** 
+ 141:Core/Src/freertos.c ****   /* creation of t_output */
+ 142:Core/Src/freertos.c ****   t_outputHandle = osThreadNew(start_t_output, NULL, &t_output_attributes);
+ 209              		.loc 1 142 20
+ 210 0054 104A     		ldr	r2, .L2+48
+ 211 0056 0021     		movs	r1, #0
+ 212 0058 1048     		ldr	r0, .L2+52
+ 213 005a FFF7FEFF 		bl	osThreadNew
+ 214 005e 0346     		mov	r3, r0
+ 215              		.loc 1 142 18 discriminator 1
+ 216 0060 0F4A     		ldr	r2, .L2+56
+ 217 0062 1360     		str	r3, [r2]
+ 143:Core/Src/freertos.c **** 
+ 144:Core/Src/freertos.c ****   /* USER CODE BEGIN RTOS_THREADS */
+ 145:Core/Src/freertos.c ****   /* add threads, ... */
+ 146:Core/Src/freertos.c ****   /* USER CODE END RTOS_THREADS */
+ 147:Core/Src/freertos.c **** 
+ 148:Core/Src/freertos.c ****   /* USER CODE BEGIN RTOS_EVENTS */
+ 149:Core/Src/freertos.c ****   /* add events, ... */
+ 150:Core/Src/freertos.c ****   /* USER CODE END RTOS_EVENTS */
+ 151:Core/Src/freertos.c **** 
+ 152:Core/Src/freertos.c **** }
+ 218              		.loc 1 152 1
+ 219 0064 00BF     		nop
+ 220 0066 80BD     		pop	{r7, pc}
+ 221              	.L3:
+ 222              		.align	2
+ 223              	.L2:
+ 224 0068 00000000 		.word	m_input_to_log_attributes
+ 225 006c 00000000 		.word	m_input_to_logHandle
+ 226 0070 00000000 		.word	m_log_to_output_attributes
+ 227 0074 00000000 		.word	m_log_to_outputHandle
+ 228 0078 00000000 		.word	m_output_to_input_attributes
+ 229 007c 00000000 		.word	m_output_to_inputHandle
+ 230 0080 00000000 		.word	t_input_attributes
+ 231 0084 00000000 		.word	start_t_input
+ 232 0088 00000000 		.word	t_inputHandle
+ 233 008c 00000000 		.word	t_log_attributes
+ 234 0090 00000000 		.word	start_t_log
+ARM GAS  C:\Users\TGSPOC~1\AppData\Local\Temp\ccN5Zqvw.s 			page 8
+
+
+ 235 0094 00000000 		.word	t_logHandle
+ 236 0098 00000000 		.word	t_output_attributes
+ 237 009c 00000000 		.word	start_t_output
+ 238 00a0 00000000 		.word	t_outputHandle
+ 239              		.cfi_endproc
+ 240              	.LFE138:
+ 242              		.section	.text.start_t_input,"ax",%progbits
+ 243              		.align	1
+ 244              		.global	start_t_input
+ 245              		.syntax unified
+ 246              		.thumb
+ 247              		.thumb_func
+ 249              	start_t_input:
+ 250              	.LFB139:
+ 153:Core/Src/freertos.c **** 
+ 154:Core/Src/freertos.c **** /* USER CODE BEGIN Header_start_t_input */
+ 155:Core/Src/freertos.c **** /**
+ 156:Core/Src/freertos.c ****   * @brief  Function implementing the t_input thread.
+ 157:Core/Src/freertos.c ****   * @param  argument: Not used
+ 158:Core/Src/freertos.c ****   * @retval None
+ 159:Core/Src/freertos.c ****   */
+ 160:Core/Src/freertos.c **** /* USER CODE END Header_start_t_input */
+ 161:Core/Src/freertos.c **** void start_t_input(void *argument)
+ 162:Core/Src/freertos.c **** {
+ 251              		.loc 1 162 1
+ 252              		.cfi_startproc
+ 253              		@ args = 0, pretend = 0, frame = 16
+ 254              		@ frame_needed = 1, uses_anonymous_args = 0
+ 255 0000 80B5     		push	{r7, lr}
+ 256              	.LCFI2:
+ 257              		.cfi_def_cfa_offset 8
+ 258              		.cfi_offset 7, -8
+ 259              		.cfi_offset 14, -4
+ 260 0002 84B0     		sub	sp, sp, #16
+ 261              	.LCFI3:
+ 262              		.cfi_def_cfa_offset 24
+ 263 0004 00AF     		add	r7, sp, #0
+ 264              	.LCFI4:
+ 265              		.cfi_def_cfa_register 7
+ 266 0006 7860     		str	r0, [r7, #4]
+ 163:Core/Src/freertos.c ****   /* USER CODE BEGIN start_t_input */
+ 164:Core/Src/freertos.c ****   uint16_t num = 0;
+ 267              		.loc 1 164 12
+ 268 0008 0023     		movs	r3, #0
+ 269 000a FB81     		strh	r3, [r7, #14]	@ movhi
+ 270              	.L5:
+ 165:Core/Src/freertos.c ****   /* Infinite loop */
+ 166:Core/Src/freertos.c ****   for(;;)
+ 167:Core/Src/freertos.c ****   {
+ 168:Core/Src/freertos.c ****     num ++;
+ 271              		.loc 1 168 9
+ 272 000c FB89     		ldrh	r3, [r7, #14]
+ 273 000e 0133     		adds	r3, r3, #1
+ 274 0010 FB81     		strh	r3, [r7, #14]	@ movhi
+ 169:Core/Src/freertos.c ****     HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_0);
+ 275              		.loc 1 169 5
+ 276 0012 0121     		movs	r1, #1
+ARM GAS  C:\Users\TGSPOC~1\AppData\Local\Temp\ccN5Zqvw.s 			page 9
+
+
+ 277 0014 0448     		ldr	r0, .L6
+ 278 0016 FFF7FEFF 		bl	HAL_GPIO_TogglePin
+ 170:Core/Src/freertos.c ****     osDelay(500);
+ 279              		.loc 1 170 5 discriminator 1
+ 280 001a 4FF4FA70 		mov	r0, #500
+ 281 001e FFF7FEFF 		bl	osDelay
+ 168:Core/Src/freertos.c ****     HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_0);
+ 282              		.loc 1 168 9
+ 283 0022 00BF     		nop
+ 284 0024 F2E7     		b	.L5
+ 285              	.L7:
+ 286 0026 00BF     		.align	2
+ 287              	.L6:
+ 288 0028 00000240 		.word	1073872896
+ 289              		.cfi_endproc
+ 290              	.LFE139:
+ 292              		.section	.text.start_t_log,"ax",%progbits
+ 293              		.align	1
+ 294              		.global	start_t_log
+ 295              		.syntax unified
+ 296              		.thumb
+ 297              		.thumb_func
+ 299              	start_t_log:
+ 300              	.LFB140:
+ 171:Core/Src/freertos.c ****   }
+ 172:Core/Src/freertos.c ****   /* USER CODE END start_t_input */
+ 173:Core/Src/freertos.c **** }
+ 174:Core/Src/freertos.c **** 
+ 175:Core/Src/freertos.c **** /* USER CODE BEGIN Header_start_t_log */
+ 176:Core/Src/freertos.c **** /**
+ 177:Core/Src/freertos.c **** * @brief Function implementing the t_log thread.
+ 178:Core/Src/freertos.c **** * @param argument: Not used
+ 179:Core/Src/freertos.c **** * @retval None
+ 180:Core/Src/freertos.c **** */
+ 181:Core/Src/freertos.c **** /* USER CODE END Header_start_t_log */
+ 182:Core/Src/freertos.c **** void start_t_log(void *argument)
+ 183:Core/Src/freertos.c **** {
+ 301              		.loc 1 183 1
+ 302              		.cfi_startproc
+ 303              		@ args = 0, pretend = 0, frame = 8
+ 304              		@ frame_needed = 1, uses_anonymous_args = 0
+ 305 0000 80B5     		push	{r7, lr}
+ 306              	.LCFI5:
+ 307              		.cfi_def_cfa_offset 8
+ 308              		.cfi_offset 7, -8
+ 309              		.cfi_offset 14, -4
+ 310 0002 82B0     		sub	sp, sp, #8
+ 311              	.LCFI6:
+ 312              		.cfi_def_cfa_offset 16
+ 313 0004 00AF     		add	r7, sp, #0
+ 314              	.LCFI7:
+ 315              		.cfi_def_cfa_register 7
+ 316 0006 7860     		str	r0, [r7, #4]
+ 317              	.L9:
+ 184:Core/Src/freertos.c ****   /* USER CODE BEGIN start_t_log */
+ 185:Core/Src/freertos.c ****   /* Infinite loop */
+ 186:Core/Src/freertos.c ****   for(;;)
+ARM GAS  C:\Users\TGSPOC~1\AppData\Local\Temp\ccN5Zqvw.s 			page 10
+
+
+ 187:Core/Src/freertos.c ****   {
+ 188:Core/Src/freertos.c ****     osDelay(1);
+ 318              		.loc 1 188 5 discriminator 1
+ 319 0008 0120     		movs	r0, #1
+ 320 000a FFF7FEFF 		bl	osDelay
+ 321 000e FBE7     		b	.L9
+ 322              		.cfi_endproc
+ 323              	.LFE140:
+ 325              		.section	.text.start_t_output,"ax",%progbits
+ 326              		.align	1
+ 327              		.global	start_t_output
+ 328              		.syntax unified
+ 329              		.thumb
+ 330              		.thumb_func
+ 332              	start_t_output:
+ 333              	.LFB141:
+ 189:Core/Src/freertos.c ****   }
+ 190:Core/Src/freertos.c ****   /* USER CODE END start_t_log */
+ 191:Core/Src/freertos.c **** }
+ 192:Core/Src/freertos.c **** 
+ 193:Core/Src/freertos.c **** /* USER CODE BEGIN Header_start_t_output */
+ 194:Core/Src/freertos.c **** /**
+ 195:Core/Src/freertos.c **** * @brief Function implementing the t_output thread.
+ 196:Core/Src/freertos.c **** * @param argument: Not used
+ 197:Core/Src/freertos.c **** * @retval None
+ 198:Core/Src/freertos.c **** */
+ 199:Core/Src/freertos.c **** /* USER CODE END Header_start_t_output */
+ 200:Core/Src/freertos.c **** void start_t_output(void *argument)
+ 201:Core/Src/freertos.c **** {
+ 334              		.loc 1 201 1
+ 335              		.cfi_startproc
+ 336              		@ args = 0, pretend = 0, frame = 8
+ 337              		@ frame_needed = 1, uses_anonymous_args = 0
+ 338 0000 80B5     		push	{r7, lr}
+ 339              	.LCFI8:
+ 340              		.cfi_def_cfa_offset 8
+ 341              		.cfi_offset 7, -8
+ 342              		.cfi_offset 14, -4
+ 343 0002 82B0     		sub	sp, sp, #8
+ 344              	.LCFI9:
+ 345              		.cfi_def_cfa_offset 16
+ 346 0004 00AF     		add	r7, sp, #0
+ 347              	.LCFI10:
+ 348              		.cfi_def_cfa_register 7
+ 349 0006 7860     		str	r0, [r7, #4]
+ 350              	.L11:
+ 202:Core/Src/freertos.c ****   /* USER CODE BEGIN start_t_output */
+ 203:Core/Src/freertos.c ****   /* Infinite loop */
+ 204:Core/Src/freertos.c ****   for(;;)
+ 205:Core/Src/freertos.c ****   {
+ 206:Core/Src/freertos.c ****     osDelay(1);
+ 351              		.loc 1 206 5 discriminator 1
+ 352 0008 0120     		movs	r0, #1
+ 353 000a FFF7FEFF 		bl	osDelay
+ 354 000e FBE7     		b	.L11
+ 355              		.cfi_endproc
+ 356              	.LFE141:
+ARM GAS  C:\Users\TGSPOC~1\AppData\Local\Temp\ccN5Zqvw.s 			page 11
+
+
+ 358              		.text
+ 359              	.Letext0:
+ 360              		.file 2 "C:/gcc_vsc/arm_gcc/14.2 rel1/arm-none-eabi/include/machine/_default_types.h"
+ 361              		.file 3 "C:/gcc_vsc/arm_gcc/14.2 rel1/arm-none-eabi/include/sys/_stdint.h"
+ 362              		.file 4 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f411xe.h"
+ 363              		.file 5 "Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.h"
+ 364              		.file 6 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h"
+ARM GAS  C:\Users\TGSPOC~1\AppData\Local\Temp\ccN5Zqvw.s 			page 12
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 freertos.c
+C:\Users\TGSPOC~1\AppData\Local\Temp\ccN5Zqvw.s:25     .bss.t_inputHandle:00000000 t_inputHandle
+C:\Users\TGSPOC~1\AppData\Local\Temp\ccN5Zqvw.s:22     .bss.t_inputHandle:00000000 $d
+C:\Users\TGSPOC~1\AppData\Local\Temp\ccN5Zqvw.s:36     .rodata.t_input_attributes:00000000 t_input_attributes
+C:\Users\TGSPOC~1\AppData\Local\Temp\ccN5Zqvw.s:29     .rodata:00000000 $d
+C:\Users\TGSPOC~1\AppData\Local\Temp\ccN5Zqvw.s:33     .rodata.t_input_attributes:00000000 $d
+C:\Users\TGSPOC~1\AppData\Local\Temp\ccN5Zqvw.s:47     .bss.t_logHandle:00000000 t_logHandle
+C:\Users\TGSPOC~1\AppData\Local\Temp\ccN5Zqvw.s:44     .bss.t_logHandle:00000000 $d
+C:\Users\TGSPOC~1\AppData\Local\Temp\ccN5Zqvw.s:58     .rodata.t_log_attributes:00000000 t_log_attributes
+C:\Users\TGSPOC~1\AppData\Local\Temp\ccN5Zqvw.s:55     .rodata.t_log_attributes:00000000 $d
+C:\Users\TGSPOC~1\AppData\Local\Temp\ccN5Zqvw.s:69     .bss.t_outputHandle:00000000 t_outputHandle
+C:\Users\TGSPOC~1\AppData\Local\Temp\ccN5Zqvw.s:66     .bss.t_outputHandle:00000000 $d
+C:\Users\TGSPOC~1\AppData\Local\Temp\ccN5Zqvw.s:80     .rodata.t_output_attributes:00000000 t_output_attributes
+C:\Users\TGSPOC~1\AppData\Local\Temp\ccN5Zqvw.s:77     .rodata.t_output_attributes:00000000 $d
+C:\Users\TGSPOC~1\AppData\Local\Temp\ccN5Zqvw.s:91     .bss.m_input_to_logHandle:00000000 m_input_to_logHandle
+C:\Users\TGSPOC~1\AppData\Local\Temp\ccN5Zqvw.s:88     .bss.m_input_to_logHandle:00000000 $d
+C:\Users\TGSPOC~1\AppData\Local\Temp\ccN5Zqvw.s:102    .rodata.m_input_to_log_attributes:00000000 m_input_to_log_attributes
+C:\Users\TGSPOC~1\AppData\Local\Temp\ccN5Zqvw.s:99     .rodata.m_input_to_log_attributes:00000000 $d
+C:\Users\TGSPOC~1\AppData\Local\Temp\ccN5Zqvw.s:110    .bss.m_log_to_outputHandle:00000000 m_log_to_outputHandle
+C:\Users\TGSPOC~1\AppData\Local\Temp\ccN5Zqvw.s:107    .bss.m_log_to_outputHandle:00000000 $d
+C:\Users\TGSPOC~1\AppData\Local\Temp\ccN5Zqvw.s:121    .rodata.m_log_to_output_attributes:00000000 m_log_to_output_attributes
+C:\Users\TGSPOC~1\AppData\Local\Temp\ccN5Zqvw.s:118    .rodata.m_log_to_output_attributes:00000000 $d
+C:\Users\TGSPOC~1\AppData\Local\Temp\ccN5Zqvw.s:129    .bss.m_output_to_inputHandle:00000000 m_output_to_inputHandle
+C:\Users\TGSPOC~1\AppData\Local\Temp\ccN5Zqvw.s:126    .bss.m_output_to_inputHandle:00000000 $d
+C:\Users\TGSPOC~1\AppData\Local\Temp\ccN5Zqvw.s:140    .rodata.m_output_to_input_attributes:00000000 m_output_to_input_attributes
+C:\Users\TGSPOC~1\AppData\Local\Temp\ccN5Zqvw.s:137    .rodata.m_output_to_input_attributes:00000000 $d
+C:\Users\TGSPOC~1\AppData\Local\Temp\ccN5Zqvw.s:144    .text.MX_FREERTOS_Init:00000000 $t
+C:\Users\TGSPOC~1\AppData\Local\Temp\ccN5Zqvw.s:150    .text.MX_FREERTOS_Init:00000000 MX_FREERTOS_Init
+C:\Users\TGSPOC~1\AppData\Local\Temp\ccN5Zqvw.s:224    .text.MX_FREERTOS_Init:00000068 $d
+C:\Users\TGSPOC~1\AppData\Local\Temp\ccN5Zqvw.s:249    .text.start_t_input:00000000 start_t_input
+C:\Users\TGSPOC~1\AppData\Local\Temp\ccN5Zqvw.s:299    .text.start_t_log:00000000 start_t_log
+C:\Users\TGSPOC~1\AppData\Local\Temp\ccN5Zqvw.s:332    .text.start_t_output:00000000 start_t_output
+C:\Users\TGSPOC~1\AppData\Local\Temp\ccN5Zqvw.s:243    .text.start_t_input:00000000 $t
+C:\Users\TGSPOC~1\AppData\Local\Temp\ccN5Zqvw.s:288    .text.start_t_input:00000028 $d
+C:\Users\TGSPOC~1\AppData\Local\Temp\ccN5Zqvw.s:293    .text.start_t_log:00000000 $t
+C:\Users\TGSPOC~1\AppData\Local\Temp\ccN5Zqvw.s:326    .text.start_t_output:00000000 $t
+
+UNDEFINED SYMBOLS
+osMessageQueueNew
+osThreadNew
+HAL_GPIO_TogglePin
+osDelay

@@ -1,0 +1,98 @@
+ARM GAS  C:\Users\TGSPOC~1\AppData\Local\Temp\cczsGFAM.s 			page 1
+
+
+   1              		.cpu cortex-m7
+   2              		.arch armv7e-m
+   3              		.fpu fpv5-d16
+   4              		.eabi_attribute 28, 1
+   5              		.eabi_attribute 20, 1
+   6              		.eabi_attribute 21, 1
+   7              		.eabi_attribute 23, 3
+   8              		.eabi_attribute 24, 1
+   9              		.eabi_attribute 25, 1
+  10              		.eabi_attribute 26, 1
+  11              		.eabi_attribute 30, 6
+  12              		.eabi_attribute 34, 1
+  13              		.eabi_attribute 18, 4
+  14              		.file	"reg_def_st77916.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.file 1 "BSP/ST77916/Src/reg_def_st77916.c"
+  19              		.section	.text.convert_rgb888,"ax",%progbits
+  20              		.align	1
+  21              		.global	convert_rgb888
+  22              		.syntax unified
+  23              		.thumb
+  24              		.thumb_func
+  26              	convert_rgb888:
+  27              	.LFB0:
+   1:BSP/ST77916/Src/reg_def_st77916.c **** #include "reg_def_st77916.h"
+   2:BSP/ST77916/Src/reg_def_st77916.c **** 
+   3:BSP/ST77916/Src/reg_def_st77916.c **** uint32_t convert_rgb888(uint32_t rgb888)
+   4:BSP/ST77916/Src/reg_def_st77916.c **** {
+  28              		.loc 1 4 1
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 8
+  31              		@ frame_needed = 1, uses_anonymous_args = 0
+  32              		@ link register save eliminated.
+  33 0000 80B4     		push	{r7}
+  34              	.LCFI0:
+  35              		.cfi_def_cfa_offset 4
+  36              		.cfi_offset 7, -4
+  37 0002 83B0     		sub	sp, sp, #12
+  38              	.LCFI1:
+  39              		.cfi_def_cfa_offset 16
+  40 0004 00AF     		add	r7, sp, #0
+  41              	.LCFI2:
+  42              		.cfi_def_cfa_register 7
+  43 0006 7860     		str	r0, [r7, #4]
+   5:BSP/ST77916/Src/reg_def_st77916.c **** #if defined (ST77916_COLOR_MODE_565)
+   6:BSP/ST77916/Src/reg_def_st77916.c ****   return ((rgb888 & 0xF80000) >> 8) | ((rgb888 & 0xFC00) >> 5) | ((rgb888 & 0xF8) >> 3);
+   7:BSP/ST77916/Src/reg_def_st77916.c **** #elif defined(ST77916_COLOR_MODE_666)
+   8:BSP/ST77916/Src/reg_def_st77916.c ****   return rgb888 & 0xFCFCFC;
+  44              		.loc 1 8 17
+  45 0008 7A68     		ldr	r2, [r7, #4]
+  46 000a 044B     		ldr	r3, .L3
+  47 000c 1340     		ands	r3, r3, r2
+   9:BSP/ST77916/Src/reg_def_st77916.c **** #else 
+  10:BSP/ST77916/Src/reg_def_st77916.c ****   return rgb888;
+  11:BSP/ST77916/Src/reg_def_st77916.c **** #endif
+ARM GAS  C:\Users\TGSPOC~1\AppData\Local\Temp\cczsGFAM.s 			page 2
+
+
+  12:BSP/ST77916/Src/reg_def_st77916.c **** }
+  48              		.loc 1 12 1
+  49 000e 1846     		mov	r0, r3
+  50 0010 0C37     		adds	r7, r7, #12
+  51              	.LCFI3:
+  52              		.cfi_def_cfa_offset 4
+  53 0012 BD46     		mov	sp, r7
+  54              	.LCFI4:
+  55              		.cfi_def_cfa_register 13
+  56              		@ sp needed
+  57 0014 5DF8047B 		ldr	r7, [sp], #4
+  58              	.LCFI5:
+  59              		.cfi_restore 7
+  60              		.cfi_def_cfa_offset 0
+  61 0018 7047     		bx	lr
+  62              	.L4:
+  63 001a 00BF     		.align	2
+  64              	.L3:
+  65 001c FCFCFC00 		.word	16579836
+  66              		.cfi_endproc
+  67              	.LFE0:
+  69              		.text
+  70              	.Letext0:
+  71              		.file 2 "C:/gcc_vsc/arm_gcc/14.2 rel1/arm-none-eabi/include/machine/_default_types.h"
+  72              		.file 3 "C:/gcc_vsc/arm_gcc/14.2 rel1/arm-none-eabi/include/sys/_stdint.h"
+ARM GAS  C:\Users\TGSPOC~1\AppData\Local\Temp\cczsGFAM.s 			page 3
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 reg_def_st77916.c
+C:\Users\TGSPOC~1\AppData\Local\Temp\cczsGFAM.s:20     .text.convert_rgb888:00000000 $t
+C:\Users\TGSPOC~1\AppData\Local\Temp\cczsGFAM.s:26     .text.convert_rgb888:00000000 convert_rgb888
+C:\Users\TGSPOC~1\AppData\Local\Temp\cczsGFAM.s:65     .text.convert_rgb888:0000001c $d
+
+NO UNDEFINED SYMBOLS

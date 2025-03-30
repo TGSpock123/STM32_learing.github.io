@@ -28,7 +28,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "driver_st77916.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -102,7 +102,7 @@ int main(void)
   MX_I2C3_Init();
   MX_QUADSPI_Init();
   /* USER CODE BEGIN 2 */
-
+  driver_st77916_init();
   /* USER CODE END 2 */
 
   /* Init scheduler */

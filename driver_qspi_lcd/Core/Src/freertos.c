@@ -25,7 +25,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "driver_st77916.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -126,7 +126,8 @@ void task_default_start(void *argument)
   /* Infinite loop */
   for(;;)
   {
-    osDelay(1);
+    driver_st77916_fillscreen(0xFF0000);
+    //vTaskDelay(100);
   }
   /* USER CODE END task_default_start */
 }

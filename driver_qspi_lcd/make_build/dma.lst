@@ -1,0 +1,155 @@
+ARM GAS  C:\Users\TGSPOC~1\AppData\Local\Temp\ccK6UbVe.s 			page 1
+
+
+   1              		.cpu cortex-m7
+   2              		.arch armv7e-m
+   3              		.fpu fpv5-d16
+   4              		.eabi_attribute 28, 1
+   5              		.eabi_attribute 20, 1
+   6              		.eabi_attribute 21, 1
+   7              		.eabi_attribute 23, 3
+   8              		.eabi_attribute 24, 1
+   9              		.eabi_attribute 25, 1
+  10              		.eabi_attribute 26, 1
+  11              		.eabi_attribute 30, 6
+  12              		.eabi_attribute 34, 1
+  13              		.eabi_attribute 18, 4
+  14              		.file	"dma.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.file 1 "Core/Src/dma.c"
+  19              		.section	.text.MX_DMA_Init,"ax",%progbits
+  20              		.align	1
+  21              		.global	MX_DMA_Init
+  22              		.syntax unified
+  23              		.thumb
+  24              		.thumb_func
+  26              	MX_DMA_Init:
+  27              	.LFB144:
+   1:Core/Src/dma.c **** /* USER CODE BEGIN Header */
+   2:Core/Src/dma.c **** /**
+   3:Core/Src/dma.c ****   ******************************************************************************
+   4:Core/Src/dma.c ****   * @file    dma.c
+   5:Core/Src/dma.c ****   * @brief   This file provides code for the configuration
+   6:Core/Src/dma.c ****   *          of all the requested memory to memory DMA transfers.
+   7:Core/Src/dma.c ****   ******************************************************************************
+   8:Core/Src/dma.c ****   * @attention
+   9:Core/Src/dma.c ****   *
+  10:Core/Src/dma.c ****   * Copyright (c) 2025 STMicroelectronics.
+  11:Core/Src/dma.c ****   * All rights reserved.
+  12:Core/Src/dma.c ****   *
+  13:Core/Src/dma.c ****   * This software is licensed under terms that can be found in the LICENSE file
+  14:Core/Src/dma.c ****   * in the root directory of this software component.
+  15:Core/Src/dma.c ****   * If no LICENSE file comes with this software, it is provided AS-IS.
+  16:Core/Src/dma.c ****   *
+  17:Core/Src/dma.c ****   ******************************************************************************
+  18:Core/Src/dma.c ****   */
+  19:Core/Src/dma.c **** /* USER CODE END Header */
+  20:Core/Src/dma.c **** 
+  21:Core/Src/dma.c **** /* Includes ------------------------------------------------------------------*/
+  22:Core/Src/dma.c **** #include "dma.h"
+  23:Core/Src/dma.c **** 
+  24:Core/Src/dma.c **** /* USER CODE BEGIN 0 */
+  25:Core/Src/dma.c **** 
+  26:Core/Src/dma.c **** /* USER CODE END 0 */
+  27:Core/Src/dma.c **** 
+  28:Core/Src/dma.c **** /*----------------------------------------------------------------------------*/
+  29:Core/Src/dma.c **** /* Configure DMA                                                              */
+  30:Core/Src/dma.c **** /*----------------------------------------------------------------------------*/
+  31:Core/Src/dma.c **** 
+ARM GAS  C:\Users\TGSPOC~1\AppData\Local\Temp\ccK6UbVe.s 			page 2
+
+
+  32:Core/Src/dma.c **** /* USER CODE BEGIN 1 */
+  33:Core/Src/dma.c **** 
+  34:Core/Src/dma.c **** /* USER CODE END 1 */
+  35:Core/Src/dma.c **** 
+  36:Core/Src/dma.c **** /**
+  37:Core/Src/dma.c ****   * Enable DMA controller clock
+  38:Core/Src/dma.c ****   */
+  39:Core/Src/dma.c **** void MX_DMA_Init(void)
+  40:Core/Src/dma.c **** {
+  28              		.loc 1 40 1
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 8
+  31              		@ frame_needed = 1, uses_anonymous_args = 0
+  32 0000 80B5     		push	{r7, lr}
+  33              	.LCFI0:
+  34              		.cfi_def_cfa_offset 8
+  35              		.cfi_offset 7, -8
+  36              		.cfi_offset 14, -4
+  37 0002 82B0     		sub	sp, sp, #8
+  38              	.LCFI1:
+  39              		.cfi_def_cfa_offset 16
+  40 0004 00AF     		add	r7, sp, #0
+  41              	.LCFI2:
+  42              		.cfi_def_cfa_register 7
+  43              	.LBB2:
+  41:Core/Src/dma.c **** 
+  42:Core/Src/dma.c ****   /* DMA controller clock enable */
+  43:Core/Src/dma.c ****   __HAL_RCC_DMA1_CLK_ENABLE();
+  44              		.loc 1 43 3
+  45 0006 0D4B     		ldr	r3, .L2
+  46 0008 D3F8D830 		ldr	r3, [r3, #216]
+  47 000c 0B4A     		ldr	r2, .L2
+  48 000e 43F00103 		orr	r3, r3, #1
+  49 0012 C2F8D830 		str	r3, [r2, #216]
+  50 0016 094B     		ldr	r3, .L2
+  51 0018 D3F8D830 		ldr	r3, [r3, #216]
+  52 001c 03F00103 		and	r3, r3, #1
+  53 0020 7B60     		str	r3, [r7, #4]
+  54 0022 7B68     		ldr	r3, [r7, #4]
+  55              	.LBE2:
+  44:Core/Src/dma.c **** 
+  45:Core/Src/dma.c ****   /* DMA interrupt init */
+  46:Core/Src/dma.c ****   /* DMA1_Stream1_IRQn interrupt configuration */
+  47:Core/Src/dma.c ****   HAL_NVIC_SetPriority(DMA1_Stream1_IRQn, 6, 0);
+  56              		.loc 1 47 3
+  57 0024 0022     		movs	r2, #0
+  58 0026 0621     		movs	r1, #6
+  59 0028 0C20     		movs	r0, #12
+  60 002a FFF7FEFF 		bl	HAL_NVIC_SetPriority
+  48:Core/Src/dma.c ****   HAL_NVIC_EnableIRQ(DMA1_Stream1_IRQn);
+  61              		.loc 1 48 3
+  62 002e 0C20     		movs	r0, #12
+  63 0030 FFF7FEFF 		bl	HAL_NVIC_EnableIRQ
+  49:Core/Src/dma.c **** 
+  50:Core/Src/dma.c **** }
+  64              		.loc 1 50 1
+  65 0034 00BF     		nop
+ARM GAS  C:\Users\TGSPOC~1\AppData\Local\Temp\ccK6UbVe.s 			page 3
+
+
+  66 0036 0837     		adds	r7, r7, #8
+  67              	.LCFI3:
+  68              		.cfi_def_cfa_offset 8
+  69 0038 BD46     		mov	sp, r7
+  70              	.LCFI4:
+  71              		.cfi_def_cfa_register 13
+  72              		@ sp needed
+  73 003a 80BD     		pop	{r7, pc}
+  74              	.L3:
+  75              		.align	2
+  76              	.L2:
+  77 003c 00440258 		.word	1476543488
+  78              		.cfi_endproc
+  79              	.LFE144:
+  81              		.text
+  82              	.Letext0:
+  83              		.file 2 "Drivers/CMSIS/Device/ST/STM32H7xx/Include/stm32h743xx.h"
+  84              		.file 3 "C:/gcc_vsc/arm_gcc/14.2 rel1/arm-none-eabi/include/machine/_default_types.h"
+  85              		.file 4 "C:/gcc_vsc/arm_gcc/14.2 rel1/arm-none-eabi/include/sys/_stdint.h"
+  86              		.file 5 "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_cortex.h"
+ARM GAS  C:\Users\TGSPOC~1\AppData\Local\Temp\ccK6UbVe.s 			page 4
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 dma.c
+C:\Users\TGSPOC~1\AppData\Local\Temp\ccK6UbVe.s:20     .text.MX_DMA_Init:00000000 $t
+C:\Users\TGSPOC~1\AppData\Local\Temp\ccK6UbVe.s:26     .text.MX_DMA_Init:00000000 MX_DMA_Init
+C:\Users\TGSPOC~1\AppData\Local\Temp\ccK6UbVe.s:77     .text.MX_DMA_Init:0000003c $d
+
+UNDEFINED SYMBOLS
+HAL_NVIC_SetPriority
+HAL_NVIC_EnableIRQ

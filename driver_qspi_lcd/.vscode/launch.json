@@ -2,6 +2,27 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "name": "stm32h743_make_debug",
+      "cwd": "${workspaceFolder}",
+      "executable": "./make_build/template_stm32h7.elf",
+      "request": "launch",
+      "type": "cortex-debug",
+      "runToEntryPoint": "main",
+      "servertype": "openocd",
+      "device": "STM32H743VIT6",
+      "svdFile": "./Tools/STM32H743.svd",
+      "configFiles": [
+        "./Tools/interface/jlink.cfg",
+        "./Tools/target/stm32h7x.cfg"
+      ],
+      "liveWatch": {
+        "enabled": true,
+        "samplesPerSecond": 4
+      },
+      "searchDir": [],
+      "showDevDebugOutput": "none"
+    },
+    {
       "name": "C/C++ Runner: Debug Session",
       "type": "cppdbg",
       "request": "launch",

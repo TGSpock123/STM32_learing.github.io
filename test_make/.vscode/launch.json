@@ -2,9 +2,9 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "stm32_make_debug",
+      "name": "stm32f411_make_debug",
       "cwd": "${workspaceFolder}",
-      "executable": "./build/template_1.elf",
+      "executable": "./make_build/template_1.elf",
       "request": "launch",
       "type": "cortex-debug",
       "runToEntryPoint": "main",

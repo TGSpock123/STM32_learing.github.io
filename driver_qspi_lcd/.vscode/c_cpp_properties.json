@@ -1,18 +1,42 @@
 {
-  "configurations": [
-    {
-      "name": "windows-gcc-x64",
-      "includePath": [
-        "${workspaceFolder}/**"
-      ],
-      "compilerPath": "C:/Program Files/JetBrains/CLion 2024.3.4/bin/mingw/bin/gcc.exe",
-      "cStandard": "${default}",
-      "cppStandard": "${default}",
-      "intelliSenseMode": "windows-gcc-x64",
-      "compilerArgs": [
-        ""
-      ]
-    }
-  ],
-  "version": 4
+    "configurations": [
+        {
+            "name": "windows-gcc-x64",
+            "includePath": [
+                "${workspaceFolder}/**"
+            ],
+            "compilerPath": "C:/Program Files/JetBrains/CLion 2024.3.4/bin/mingw/bin/gcc.exe",
+            "cStandard": "${default}",
+            "cppStandard": "${default}",
+            "intelliSenseMode": "windows-gcc-x64",
+            "compilerArgs": [
+                ""
+            ]
+        },
+        {
+            "name": "stm32h743_make",
+            "includePath": [
+                "${workspaceFolder}/**"
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE",
+                "USE_PWR_LDO_SUPPLY",
+                "USE_HAL_DRIVER",
+                "STM32H743xx"
+            ],
+            "compilerPath": "C:\\gcc_vsc\\arm_gcc\\14.2 rel1\\bin\\arm-none-eabi-gcc.exe",
+            "cStandard": "c99",
+            "cppStandard": "gnu++17",
+            "intelliSenseMode": "gcc-arm",
+            "compilerArgs": [
+                "-mcpu=cortex-m7",
+                "-mfpu=fpv5-d16",
+                "-mfloat-abi=hard",
+                "-mthumb"
+            ]
+        }
+    ],
+    "version": 4
 }
